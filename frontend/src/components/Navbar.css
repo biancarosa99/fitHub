@@ -1,0 +1,38 @@
+.navbar {
+  background-color: #f45b69;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.brand-logo {
+  margin-left: 45px;
+}
+
+.menu-items {
+  margin-right: 45px;
+}
+
+.menu-items ul {
+  display: flex;
+}
+
+.menu-item {
+  list-style: none;
+  padding: 10px;
+  display: block;
+}
+
+.menu-item {
+  list-style: none;
+  padding: 10px;
+  display: block;
+}
+
+.menu-item:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.5s ease;
+}
