@@ -1,10 +1,15 @@
 import React from "react";
-import "./Navbar.css";
+import "../styles/Navbar.css";
+import LogoIMG from '../assets/fithublogo2.png'
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="brand-logo">LOGO</div>
+      <div className="brand-logo">
+        <a href="/">
+          <img className="logo" alt="logo" src={LogoIMG} />
+        </a>
+      </div>
       <div className="menu-items">
         <ul>
           <li className="menu-item">HOME</li>

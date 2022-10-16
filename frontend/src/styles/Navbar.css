@@ -8,11 +8,17 @@
 }
 
 .brand-logo {
-  margin-left: 45px;
+  margin-left: 75px;
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 100px;
+  object-fit: contain;
 }
 
 .menu-items {
-  margin-right: 45px;
+  margin-right: 75px;
 }
 
 .menu-items ul {
