@@ -64,7 +64,7 @@
     position: absolute;
     height: 92vh;
     top: 60px;
-    background-color: black;
+    background-color: white;
     color: #f45b69;
     display: flex;
     flex-direction: column;
@@ -73,11 +73,13 @@
     width: 70%;
     margin-left: 30%;
     opacity: 1;
-    transition: opacity 2000ms ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: inset 1px 0 0 0 #D3D3D3;
   }
 
   .menu-item {
     margin-top: 5px;
+    border-bottom: 0.5px solid red;
   }
 }
 
@@ -94,8 +96,9 @@
   .menu-items-mobile {
     align-items: flex-start;
   }
-  /* .menu-item {
-    margin-left: auto;
-    margin-right: 0;
-  } */
+  .menu-item {
+    /* margin-left: auto;
+    margin-right: 0; */
+    border-bottom: 0.5px solid red;
+  }
 }
