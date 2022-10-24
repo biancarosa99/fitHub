@@ -1,0 +1,154 @@
+.info-container {
+  /* background-color: black; */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  padding: 50px;
+}
+
+.wrapper {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  /* background-color: blueviolet; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.text-container {
+  /* background: blueviolet; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.fitness-img {
+  max-width: 100%;
+  /* height: auto; */
+  backdrop-filter: blur(2px);
+  /* margin-left: 60px;
+  margin-right: 0px; */
+}
+
+.title {
+  color: #f45b69;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-bottom: 50px;
+}
+
+.button {
+  background-color: #f45b69;
+  color: white;
+  padding: 15px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+}
+
+.button:hover {
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 990px) {
+  .text-container {
+    height: 70%;
+    width: 70%;
+    padding: 20px;
+  }
+
+  .image-container {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .info-container {
+    padding: 30px;
+    height: 50vh;
+  }
+  .button {
+    margin-bottom: 10px;
+  }
+
+  .description {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .title {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .info-container {
+    padding: 20px;
+    height: 50vh;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+  .description {
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .button {
+    /* margin-bottom: 10px; */
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .info-container {
+    height: 30vh;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    height: 50vh;
+    margin-top: 60px;
+  }
+
+  .wrapper {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
