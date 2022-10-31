@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/HomeInfoContainer.css";
-import LogoIMG from "../assets/women-fitness.jpg";
+import fitnessIMG from "../assets/women-fitness.jpg";
 import { useMediaQuery } from "react-responsive";
 
 const HomeInfoContainer = () => {
@@ -12,7 +12,7 @@ const HomeInfoContainer = () => {
         <div className="info-container">
           <div className="wrapper">
             <div className="image-container">
-              <img className="fitness-img" src={LogoIMG} />
+              <img className="fitness-img" src={fitnessIMG} />
             </div>
             <div className="text-container">
               <div className="title">SHAPE YOURSELF</div>
@@ -34,10 +34,10 @@ const HomeInfoContainer = () => {
                 Our club encourages wellness by providing first-class
                 instructors, innovative classes, and qualified staff.
               </div>
+              <button className="button">JOIN NOW</button>
             </div>
             <div className="image-container">
-              <img className="fitness-img" src={LogoIMG} />
-              {/* <button className="button">JOIN NOW</button> */}
+              <img className="fitness-img" src={fitnessIMG} />
             </div>
           </div>
         </div>
