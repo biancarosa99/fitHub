@@ -1,25 +1,48 @@
 import React from "react";
 import "../styles/HomeInfoContainer.css";
 import LogoIMG from "../assets/women-fitness.jpg";
+import { useMediaQuery } from "react-responsive";
 
 const HomeInfoContainer = () => {
+  const isDesktop = useMediaQuery({ query: "(min-width: 451px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 450px)" });
   return (
-    <div className="info-container">
-      <div className="wrapper">
-        <div className="image-container">
-          <img className="fitness-img" src={LogoIMG} />
-        </div>
-        <div className="text-container">
-          <div></div>
-          <div className="title">SHAPE YOURSELF</div>
-          <div className="description">
-            Our club encourages wellness by providing first-class instructors,
-            innovative classes, and qualified staff.
+    <React.Fragment>
+      {isDesktop && (
+        <div className="info-container">
+          <div className="wrapper">
+            <div className="image-container">
+              <img className="fitness-img" src={LogoIMG} />
+            </div>
+            <div className="text-container">
+              <div className="title">SHAPE YOURSELF</div>
+              <div className="description">
+                Our club encourages wellness by providing first-class
+                instructors, innovative classes, and qualified staff.
+              </div>
+              <button className="button">JOIN NOW</button>
+            </div>
           </div>
-          <button className="button">JOIN NOW</button>
         </div>
-      </div>
-    </div>
+      )}
+      {isMobile && (
+        <div className="info-mobile-container">
+          <div className="wrapper">
+            <div className="text-container">
+              <div className="title">SHAPE YOURSELF</div>
+              <div className="description">
+                Our club encourages wellness by providing first-class
+                instructors, innovative classes, and qualified staff.
+              </div>
+            </div>
+            <div className="image-container">
+              <img className="fitness-img" src={LogoIMG} />
+              {/* <button className="button">JOIN NOW</button> */}
+            </div>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

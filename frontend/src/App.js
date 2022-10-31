@@ -1,7 +1,6 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import HomeInfoContainer from "./components/HomeInfoContainer";
-import HomeInfoMobileContainer from "./components/HomeInfoMobileContainer";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -10,9 +9,7 @@ function App() {
   return (
     <React.Fragment>
       <Navbar />
-      {isDesktop && <HomeInfoContainer />}
-      {isMobile && <HomeInfoMobileContainer />}
-      {/* <HomeInfoContainer /> */}
+      <HomeInfoContainer />
     </React.Fragment>
   );
 }
