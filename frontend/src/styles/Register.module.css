@@ -14,10 +14,10 @@
 .modal {
   position: fixed;
   width: 50vh;
-  height: 80vh;
+  height: 90vh;
   min-width: 100px;
-  min-height: 80vh;
-  overflow: auto;
+  min-height: 90vh;
+  /* overflow: auto; */
   background-color: white;
   padding: 1rem;
   border-radius: 14px;
@@ -30,7 +30,7 @@
   align-items: center;
 }
 
-.login-title-section {
+.register-title-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +44,7 @@
   border-bottom: 0.5px solid red;
 }
 
-.login-title {
+.register-title {
   font-size: 25px;
 }
 
@@ -66,7 +66,7 @@
   /* padding: 20px; */
   /* width: 100%; */
   /* background-color: aqua; */
-  /* min-width: 240px; */
+  /* min-width: 100px; */
 }
 
 .input-section {
@@ -82,6 +82,10 @@
   background-color: #d3d3d3;
   border: none;
   width: 200px;
+  /* width: 100%; */
+  /* width: 100%;   ////use to fit when resizing window */
+  /* width: calc(100% - 1px); */
+  /* overflow: calc(100% - 1px); */
   height: 25px;
   border-radius: 10px;
   /* padding: 5px; */
@@ -104,7 +108,7 @@
   cursor: pointer;
 }
 
-.login-button {
+.register-button {
   background-color: #f45b69;
   color: white;
   padding: 10px;
@@ -116,15 +120,15 @@
   width: 100px;
 }
 
-.login-button:hover {
+.register-button:hover {
   opacity: 0.4;
 }
 /* @media (min-width: 768px) {
-  .modal {
-    width: 40rem;
-    left: calc(50% - 20rem);
-  }
-} */
+    .modal {
+      width: 40rem;
+      left: calc(50% - 20rem);
+    }
+  } */
 
 @keyframes slide-down {
   from {
@@ -163,11 +167,11 @@
     /* justify-content: center; */
   }
 
-  .login-title-section {
+  .register-title-section {
     width: 300px;
   }
 
-  .login-title {
+  .register-title {
     font-size: 30px;
   }
   .form-section {
@@ -184,7 +188,7 @@
     font-size: 15px;
   }
 
-  .login-button {
+  .register-button {
     padding: 10px;
     font-size: 15px;
     cursor: pointer;
