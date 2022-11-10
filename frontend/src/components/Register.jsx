@@ -1,14 +1,17 @@
 import React from "react";
 import classes from "../styles/Register.module.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-const Register = () => {
+const Register = (props) => {
   return (
     <React.Fragment>
       <div className={classes.backdrop}>
         <div className={classes.modal}>
           <div className={classes["register-title-section"]}>
             <div className={classes["register-title"]}>Register</div>
-            <button className={classes["close-button"]}>
+            <button
+              className={classes["close-button"]}
+              onClick={props.closeRegister}
+            >
               <CloseRoundedIcon />
             </button>
           </div>

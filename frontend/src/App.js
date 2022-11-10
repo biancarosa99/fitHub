@@ -12,8 +12,6 @@ function App() {
     <React.Fragment>
       <Navbar />
       <HomeInfoContainer />
-      <Register />
-      {/* <Login /> */}
     </React.Fragment>
   );
 }
