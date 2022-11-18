@@ -30,21 +30,20 @@ function SamplePrevArrow(props) {
 const FitnessClassesCarousel = () => {
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
     initialSlide: 0,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -69,36 +68,23 @@ const FitnessClassesCarousel = () => {
       <Slider {...settings}>
         {fitnessClasses.map((fitnessClass) => (
           <div key={fitnessClass.id} className="card">
-            <div className="image-cnt">
-              <img src={fitnessClass.img} alt={fitnessClass.title} />
-            </div>
-            <div className="card-bottom">
-              <h1>
-                {fitnessClass.title} - {fitnessClass.duration} min
-              </h1>
-              <div>{fitnessClass.description}</div>
+            <div className="cardcnt">
+              <div className="image-cnt">
+                <img src={fitnessClass.img} alt={fitnessClass.title} />
+              </div>
+              <div className="card-bottom">
+                <div className="class-description">
+                  <h1>
+                    {fitnessClass.title} - {fitnessClass.duration} min
+                  </h1>
+                  <div>{fitnessClass.description}</div>
+                </div>
+              </div>
             </div>
           </div>
         ))}
       </Slider>
     </div>
-    // <div className="slider-container">
-    //   <Slider {...settings} style={{ padding: "50px" }}>
-    //     {fitnessClasses.map((fitnessClass) => (
-    //       <div key={fitnessClass.id} className="card">
-    //         <div className="card-top">
-    //           <img src={fitnessClass.img} alt={fitnessClass.title} />
-    //         </div>
-    //         <div className="card-bottom">
-    //           <h1>
-    //             {fitnessClass.title} - {fitnessClass.duration} min
-    //           </h1>
-    //           <div>{fitnessClass.description}</div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </Slider>
-    // </div>
   );
 };
 
