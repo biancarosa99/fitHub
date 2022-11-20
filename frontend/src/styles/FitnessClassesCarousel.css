@@ -24,7 +24,7 @@
 .card {
   /* border: 1px solid #f45b69; */
   overflow: hidden;
-  height: 300px;
+  height: 280px; /*suma card-bottom si image-cnt = 10px mai mica decat height la card*/
   width: 300px;
 }
 
@@ -34,7 +34,7 @@
   margin: 10px;
 }
 .card-bottom {
-  height: 140px;
+  height: 120px;
   /* margin-top: 10px; */
   /* margin: 10px 20px; */
   border-left: 5px solid #f45b69;
@@ -52,7 +52,7 @@
   object-fit: cover;
 }
 
-.cardcnt {
+.card-container {
   background-color: white;
   height: 100%;
   width: 100%;
@@ -64,7 +64,14 @@
 
 .class-description {
   margin-left: 10px;
+  font-size: 14px;
 }
+
+/* @media screen and (max-width: 990px) {   ///TO SEE
+  .class-description {
+    font-size: 15px;
+  }
+} */
 
 @media screen and (max-width: 450px) {
   .slider-cnt {

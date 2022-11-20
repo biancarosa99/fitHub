@@ -68,7 +68,7 @@ const FitnessClassesCarousel = () => {
       <Slider {...settings}>
         {fitnessClasses.map((fitnessClass) => (
           <div key={fitnessClass.id} className="card">
-            <div className="cardcnt">
+            <div className="card-container">
               <div className="image-cnt">
                 <img src={fitnessClass.img} alt={fitnessClass.title} />
               </div>
