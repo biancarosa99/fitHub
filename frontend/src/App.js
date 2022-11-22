@@ -1,5 +1,6 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import FitnessScheduler from "./components/FitnessScheduler";
 import HomeInfoContainer from "./components/HomeInfoContainer";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
@@ -12,6 +13,7 @@ function App() {
     <React.Fragment>
       <Navbar />
       <HomeInfoContainer />
+      <FitnessScheduler />
     </React.Fragment>
   );
 }
