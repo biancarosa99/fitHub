@@ -1,0 +1,64 @@
+.table-container {
+  padding: 0 10%;
+  /* margin: 40px auto 0; */
+  padding-bottom: 50px;
+}
+
+.heading {
+  font-size: 40px;
+  text-align: center;
+  color: #f45b69;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.table caption {
+  background-color: #f45b69;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px;
+  /* text-align: center; */
+}
+
+.table tbody tr td {
+  font-size: 15px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ecececec;
+  border-radius: 10px;
+  /* border: 1px solid #fafafa; */
+  /* border-top: none; */
+}
+
+.fitness-start-hour-cell {
+  font-weight: 700;
+  color: #f45b69;
+}
+
+.join-class-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 12px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+}
+
+.join-class-button:hover {
+  opacity: 0.4;
+}
+
+@media screen and (max-width: 450px) {
+  .join-class-button {
+    padding: 7px;
+    font-weight: 600;
+  }
+}
