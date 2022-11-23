@@ -1,4 +1,5 @@
 import React from "react";
+import FitnessClassesCarousel from "./components/FitnessClassesCarousel";
 import HomeInfoContainer from "./components/HomeInfoContainer";
 import Navbar from "./components/Navbar";
 
@@ -7,6 +8,7 @@ function App() {
     <React.Fragment>
       <Navbar />
       <HomeInfoContainer />
+      <FitnessClassesCarousel />
     </React.Fragment>
   );
 }
