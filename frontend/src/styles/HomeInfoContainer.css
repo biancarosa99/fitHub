@@ -126,6 +126,7 @@
   }
 }
 
+
 @media screen and (max-width: 450px) {
   .info-mobile-container {
     display: flex;
