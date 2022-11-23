@@ -25,16 +25,16 @@ export default class User extends BaseEntity {
   @IsEmail(undefined, { message: "Must be a valid email" })
   @Length(1, 255, { message: "Must not be empty" })
   @Column({ unique: true })
-  mail: string;
+  email: string;
 
   @Length(6, 24, { message: "Must be at least 6 characters long" })
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: false })
   isAdmin: boolean;
 
-  @Column()
+  @Column({ default: false })
   isTrainer: boolean;
 
   @OneToMany(() => Appointment, (appointment) => appointment.user)

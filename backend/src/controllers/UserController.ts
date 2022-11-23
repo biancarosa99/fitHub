@@ -1,24 +1,13 @@
-const express = require("express");
+import express = require("express");
 const router = express.Router();
+// import { getAllUsers, getUser, editUser, deleteUser, changePassword } from "../services/UserService";
 
-const {
-  createUser,
-  loginUser,
-  getAllUsers,
-  getUser,
-  editUser,
-  deleteUser,
-  changePassword,
-} = require("../services/UserService");
+// import { verifyToken } from "../middleware/verifyToken";
 
-const { verifyToken } = require("../middleware/verifyToken");
-
-router.post("/users/register", createUser);
-router.get("/users/", getAllUsers);
-router.get("/users/:id", getUser);
-router.put("/users/:id", verifyToken, editUser);
-router.delete("/users/:id", verifyToken, deleteUser);
-router.put("/users/password/:id", verifyToken, changePassword);
-router.post("/users/login", loginUser);
+// router.get("/users/", getAllUsers);
+// router.get("/users/:id", getUser);
+// router.put("/users/:id", verifyToken, editUser);
+// router.delete("/users/:id", verifyToken, deleteUser);
+// router.put("/users/password/:id", verifyToken, changePassword);
 
 module.exports = router;

@@ -1,17 +1,24 @@
-const express = require("express")
+const express = require("express");
+import cors = require("cors");
+import { myDataSource } from "./app-data-source";
+import * as dotenv from "dotenv";
+dotenv.config();
 const app = express();
-import {createConnection} from 'typeorm'
 
+const authRoutes = require("./controllers/AuthController");
 
-
-createConnection()
+myDataSource
+  .initialize()
   .then(() => {
+    app.use(express.json());
+    app.use(cors({ origin: "*", optionSuccessStatus: 200 }));
+
+    app.use(authRoutes);
 
     app.listen(3000, function () {
-      console.log("Backend server running");
+      console.log(`Backend server running on port ${3000}`);
     });
-
   })
-  .catch((e) =>{
+  .catch((e) => {
     console.log(e);
-  })
+  });

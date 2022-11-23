@@ -18,8 +18,8 @@ export default class ScheduledClass extends BaseEntity {
   @Column()
   date: Date;
 
-  @Column()
-  available_spots: number;
+  // @Column()
+  // available_spots: number;
 
   @Column()
   remaining_spots: number;
