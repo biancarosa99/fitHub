@@ -1,12 +1,10 @@
 import express = require("express");
 const router = express.Router();
-// import { getAllUsers, getUser, editUser, deleteUser, changePassword } from "../services/UserService";
-import { getUser } from "../services/UserService";
+import { createClass } from "../services/TrainerService";
 import { verifyToken } from "../middleware/verifyToken";
 
-// import { verifyToken } from "../middleware/verifyToken";
+router.post("/trainer/create", verifyToken, createClass);
 
-router.get("/user/:id", verifyToken, getUser);
 // router.get("/users/", getAllUsers);
 // router.put("/users/:id", verifyToken, editUser);
 // router.delete("/users/:id", verifyToken, deleteUser);

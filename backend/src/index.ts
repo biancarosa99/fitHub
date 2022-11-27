@@ -5,7 +5,9 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
-const authRoutes = require("./controllers/AuthController");
+import authRoutes = require("./controllers/AuthController");
+import userRoutes = require("./controllers/UserController");
+import trainerRoutes = require("./controllers/TrainerController");
 
 myDataSource
   .initialize()
@@ -14,6 +16,8 @@ myDataSource
     app.use(cors({ origin: "*", optionSuccessStatus: 200 }));
 
     app.use(authRoutes);
+    app.use(userRoutes);
+    app.use(trainerRoutes);
 
     app.listen(3000, function () {
       console.log(`Backend server running on port ${3000}`);

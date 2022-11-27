@@ -5,6 +5,7 @@ import {
   Column,
   BaseEntity,
   Entity,
+  Timestamp,
 } from "typeorm";
 import Appointment from "./Appointment";
 import FitnessClass from "./FitnessClass";
@@ -15,7 +16,7 @@ export default class ScheduledClass extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "timestamptz" })
   date: Date;
 
   // @Column()
