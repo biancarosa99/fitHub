@@ -11,9 +11,8 @@ const Register = (props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const userRegisterHandler = async (e) => {
-    e.preventDefault();
-
     try {
+      console.log("Form is valid in register handler: " + isValid);
       const res = await axios.post("auth/register", {
         email,
         password,
@@ -32,8 +31,6 @@ const Register = (props) => {
     } catch (err) {
       console.log("error");
     }
-
-    console.log(firstName, lastName, email, password, confirmPassword);
   };
 
   return (
