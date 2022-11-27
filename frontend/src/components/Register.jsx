@@ -7,10 +7,8 @@ import {
   userRegisterValidationSchema,
   useYupValidationResolver,
 } from "../validations/UserRegisterValidation";
-import { useMemo } from "react";
 
 const Register = (props) => {
-  const [dbErrors, setDbErrors] = useState("");
   const resolver = useYupValidationResolver(userRegisterValidationSchema);
   const {
     register,
@@ -29,14 +27,9 @@ const Register = (props) => {
         console.log(res.data);
       }
     } catch (err) {
-      setDbErrors(err.response.data);
-      console.log(dbErrors);
+      console.log(err.response.data);
     }
   };
-
-  // const errorMessage = useMemo(() => {
-  //   const error = Object.values(dbErrors).forEach((err) => console.log(err));
-  // }, [dbErrors]);
 
   return (
     <React.Fragment>
