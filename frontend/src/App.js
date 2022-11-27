@@ -4,7 +4,7 @@ import HomeInfoContainer from "./components/HomeInfoContainer";
 import Navbar from "./components/Navbar";
 import axios from "axios";
 
-// axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "http://localhost:3000";
 
 function App() {
   return (

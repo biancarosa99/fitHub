@@ -2,36 +2,41 @@ import React, { useState } from "react";
 import classes from "../styles/Register.module.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import {
+  userRegisterValidationSchema,
+  useYupValidationResolver,
+} from "../validations/UserRegisterValidation";
+import { useMemo } from "react";
 
 const Register = (props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [dbErrors, setDbErrors] = useState("");
+  const resolver = useYupValidationResolver(userRegisterValidationSchema);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver,
+  });
 
-  const userRegisterHandler = async (e) => {
+  const handleUserRegister = async (data) => {
     try {
-      console.log("Form is valid in register handler: " + isValid);
-      const res = await axios.post("auth/register", {
-        email,
-        password,
-        confirmPassword,
-        firstName,
-        lastName,
-      });
+      const res = await axios.post("auth/register", data);
+
       if (res.status === 200) {
         console.log("User registered succesfully!");
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
+        console.log(res.data);
       }
     } catch (err) {
-      console.log("error");
+      setDbErrors(err.response.data);
+      console.log(dbErrors);
     }
   };
+
+  // const errorMessage = useMemo(() => {
+  //   const error = Object.values(dbErrors).forEach((err) => console.log(err));
+  // }, [dbErrors]);
 
   return (
     <React.Fragment>
@@ -48,52 +53,63 @@ const Register = (props) => {
           </div>
           <form
             className={classes["form-section"]}
-            onSubmit={userRegisterHandler}
+            onSubmit={handleSubmit(handleUserRegister)}
           >
             <div className={classes["input-section"]}>
               <div className={classes["input-label"]}>Firstname</div>
               <input
                 type="text"
                 className={classes.input}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                {...register("firstName")}
               />
+              <div className={classes["error-message"]}>
+                {errors?.firstName?.message}
+              </div>
             </div>
+
             <div className={classes["input-section"]}>
               <div className={classes["input-label"]}>Lastname</div>
               <input
                 type="text"
                 className={classes.input}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                {...register("lastName")}
               />
+              <div className={classes["error-message"]}>
+                {errors?.lastName?.message}
+              </div>
             </div>
             <div className={classes["input-section"]}>
               <div className={classes["input-label"]}>Email</div>
               <input
                 type="email"
                 className={classes.input}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
               />
+              <div className={classes["error-message"]}>
+                {errors?.email?.message}
+              </div>
             </div>
             <div className={classes["input-section"]}>
               <div className={classes["input-label"]}>Password</div>
               <input
                 type="password"
                 className={classes.input}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
               />
+              <div className={classes["error-message"]}>
+                {errors?.password?.message}
+              </div>
             </div>
             <div className={classes["input-section"]}>
               <div className={classes["input-label"]}> Confirm Password</div>
               <input
                 type="password"
                 className={classes.input}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                {...register("confirmPassword")}
               />
+              <div className={classes["error-message"]}>
+                {errors?.confirmPassword?.message}
+              </div>
             </div>
             <div className={classes["signup-section"]}>
               <span>Already have an account? </span>
