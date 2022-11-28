@@ -2,11 +2,9 @@ import React, { useMemo, useState } from "react";
 import classes from "../styles/Login.module.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useForm } from "react-hook-form";
-import {
-  userLoginValidationSchema,
-  useYupValidationResolver,
-} from "../validations/UserRegisterValidation";
 import axios from "axios";
+import { userLoginValidationSchema } from "../validations/UserLoginValidation";
+import { useYupValidationResolver } from "../validations/YupResolver";
 
 const Login = (props) => {
   const [dbErrors, setDbErrors] = useState("");
@@ -74,8 +72,8 @@ const Login = (props) => {
               />
               <div className={classes["error-message"]}>
                 {errors?.password?.message}
-                {dbErrors}
               </div>
+              <div className={classes["error-message"]}>{dbErrors}</div>
             </div>
             <div className={classes["signup-section"]}>
               <span>Not yet registered? </span>

@@ -3,10 +3,8 @@ import classes from "../styles/Register.module.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import {
-  userRegisterValidationSchema,
-  useYupValidationResolver,
-} from "../validations/UserRegisterValidation";
+import { userRegisterValidationSchema } from "../validations/UserRegisterValidation";
+import { useYupValidationResolver } from "../validations/YupResolver";
 
 const Register = (props) => {
   const [dbErrors, setDbErrors] = useState([]);
@@ -105,8 +103,8 @@ const Register = (props) => {
               />
               <div className={classes["error-message"]}>
                 {errors?.confirmPassword?.message}
-                {dbErrors}
               </div>
+              <div className={classes["error-message"]}>{dbErrors}</div>
             </div>
             <div className={classes["signup-section"]}>
               <span>Already have an account? </span>
