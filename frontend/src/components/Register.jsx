@@ -9,6 +9,8 @@ import {
 } from "../validations/UserRegisterValidation";
 
 const Register = (props) => {
+  const [dbErrors, setDbErrors] = useState([]);
+
   const resolver = useYupValidationResolver(userRegisterValidationSchema);
   const {
     register,
@@ -28,6 +30,7 @@ const Register = (props) => {
       }
     } catch (err) {
       console.log(err.response.data);
+      setDbErrors(Object.values(err.response.data));
     }
   };
 
@@ -102,6 +105,7 @@ const Register = (props) => {
               />
               <div className={classes["error-message"]}>
                 {errors?.confirmPassword?.message}
+                {dbErrors}
               </div>
             </div>
             <div className={classes["signup-section"]}>

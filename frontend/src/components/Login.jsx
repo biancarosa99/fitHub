@@ -9,7 +9,10 @@ import {
 import axios from "axios";
 
 const Login = (props) => {
+  const [dbErrors, setDbErrors] = useState("");
+
   const resolver = useYupValidationResolver(userLoginValidationSchema);
+
   const {
     register: login,
     handleSubmit,
@@ -30,6 +33,7 @@ const Login = (props) => {
       }
     } catch (err) {
       console.log(err.response.data);
+      setDbErrors(err.response.data);
     }
   };
 
@@ -70,6 +74,7 @@ const Login = (props) => {
               />
               <div className={classes["error-message"]}>
                 {errors?.password?.message}
+                {dbErrors}
               </div>
             </div>
             <div className={classes["signup-section"]}>
