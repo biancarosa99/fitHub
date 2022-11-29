@@ -41,20 +41,20 @@
   transition: all 0.5s ease;
 }
 
-.menu-button {
+.mobile-menu-button {
   display: none;
   list-style: none;
   padding: 10px;
 }
 
-.menu-button:hover {
+.mobile-menu-button:hover {
   cursor: pointer;
   opacity: 0.4;
   transition: all 0.5s ease;
 }
 
 @media screen and (max-width: 767px) {
-  .menu-button {
+  .mobile-menu-button {
     display: block;
     margin-right: 75px;
   }
@@ -86,7 +86,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .menu-button {
+  .mobile-menu-button {
     display: block;
     padding: 0px;
     margin-right: 10px;

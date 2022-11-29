@@ -8,21 +8,21 @@ import Login from "./Login";
 import Register from "./Register";
 
 const Navbar = () => {
-  const [modalMenuIsOpen, setModalMenuIsOpen] = useState(false);
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [registerModalIsOpen, setRegisterModalIsOpen] = useState(false);
 
-  const openModalHandler = () => {
-    setModalMenuIsOpen(true);
+  const openMobileMenuHandler = () => {
+    setMobileMenuIsOpen(true);
   };
 
-  const closeModalHandler = () => {
-    setModalMenuIsOpen(false);
+  const closeMobileMenuHandler = () => {
+    setMobileMenuIsOpen(false);
   };
 
   const openLoginModalHandler = () => {
     setLoginModalIsOpen(true);
-    modalMenuIsOpen && setModalMenuIsOpen(false);
+    mobileMenuIsOpen && setMobileMenuIsOpen(false);
   };
 
   const closeLoginModalHandler = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
 
   const openRegisterModalHandler = () => {
     setRegisterModalIsOpen(true);
-    modalMenuIsOpen && setModalMenuIsOpen(false);
+    mobileMenuIsOpen && setMobileMenuIsOpen(false);
   };
 
   const closeRegisterModalHandler = () => {
@@ -58,18 +58,17 @@ const Navbar = () => {
           </li>
         </div>
 
-        {!modalMenuIsOpen && (
-          <li onClick={openModalHandler} className="menu-button">
+        {!mobileMenuIsOpen ? (
+          <li onClick={openMobileMenuHandler} className="mobile-menu-button">
             <MenuRoundedIcon />
           </li>
-        )}
-
-        {modalMenuIsOpen && (
-          <li onClick={closeModalHandler} className="menu-button">
+        ) : (
+          <li onClick={closeMobileMenuHandler} className="mobile-menu-button">
             <CloseRoundedIcon />
           </li>
         )}
-        {modalMenuIsOpen && (
+
+        {mobileMenuIsOpen && (
           <div className="menu-items-mobile">
             <li className="menu-item">HOME</li>
             <li className="menu-item">PLANS</li>
