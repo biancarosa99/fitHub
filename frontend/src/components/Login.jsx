@@ -1,13 +1,15 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "../styles/Login.module.css";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { userLoginValidationSchema } from "../validations/UserLoginValidation";
 import { useYupValidationResolver } from "../validations/YupResolver";
+import AuthContext from "../context/AuthContext";
 
 const Login = (props) => {
   const [dbErrors, setDbErrors] = useState("");
+  const { user, setUser } = useContext(AuthContext);
 
   const resolver = useYupValidationResolver(userLoginValidationSchema);
 
@@ -26,8 +28,11 @@ const Login = (props) => {
       const res = await axios.post("auth/login", data);
 
       if (res.status === 200) {
+        setDbErrors("");
         console.log("User logged in succesfully!");
         console.log(res.data);
+
+        setUser(res.data);
       }
     } catch (err) {
       console.log(err.response.data);
