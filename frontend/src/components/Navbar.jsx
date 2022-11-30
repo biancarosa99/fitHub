@@ -70,13 +70,13 @@ const Navbar = () => {
   };
 
   const navigateToSignUpHandler = () => {
-    setLoginModalIsOpen(false);
-    setRegisterModalIsOpen(true);
+    closeLoginModalHandler();
+    openRegisterModalHandler();
   };
 
   const navigateToLoginHandler = () => {
-    setRegisterModalIsOpen(false);
-    setLoginModalIsOpen(true);
+    closeRegisterModalHandler();
+    openLoginModalHandler();
   };
 
   const closeSnackbarHandler = () => {

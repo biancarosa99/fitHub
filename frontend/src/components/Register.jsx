@@ -109,10 +109,8 @@ const Register = (props) => {
             </div>
             <div className={classes["signup-section"]}>
               <span>Already have an account? </span>
-              <span>
-                <a className={classes.anchor} onClick={props.navigateToLogin}>
-                  Sign in Here
-                </a>
+              <span className={classes.anchor} onClick={props.navigateToLogin}>
+                Sign in Here
               </span>
             </div>
             <button className={classes["register-button"]}>Register</button>
