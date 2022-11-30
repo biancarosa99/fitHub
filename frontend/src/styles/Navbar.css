@@ -35,6 +35,10 @@
   display: block;
 }
 
+.hide-menu-item {
+  display: none;
+}
+
 .menu-item:hover {
   cursor: pointer;
   opacity: 0.4;

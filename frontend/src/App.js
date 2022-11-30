@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import FitnessClassesCarousel from "./components/FitnessClassesCarousel";
-import HomeInfoContainer from "./components/HomeInfoContainer";
-import Navbar from "./components/Navbar";
 import axios from "axios";
-import { useEffect } from "react";
 import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
 function App() {
   return (
     <AuthProvider>
-      <Navbar />
-      <HomeInfoContainer />
-      <FitnessClassesCarousel />
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }

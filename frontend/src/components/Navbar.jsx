@@ -45,6 +45,10 @@ const Navbar = () => {
     setUser(null);
   };
 
+  const userLoggedOutClasses = user ? "menu-item hide-menu-item" : "menu-item";
+
+  const userLoggedInClasses = user ? "menu-item" : "menu-item hide-menu-item";
+
   return (
     <React.Fragment>
       <nav className="navbar">
@@ -57,17 +61,18 @@ const Navbar = () => {
         <div className="menu-items-desktop">
           <li className="menu-item">HOME</li>
           <li className="menu-item">PLANS</li>
-          <li className="menu-item" onClick={openLoginModalHandler}>
+          <li className={userLoggedOutClasses} onClick={openLoginModalHandler}>
             LOGIN
           </li>
-          <li className="menu-item" onClick={openRegisterModalHandler}>
+          <li
+            className={userLoggedOutClasses}
+            onClick={openRegisterModalHandler}
+          >
             REGISTER
           </li>
-          {user && (
-            <li className="menu-item" onClick={logoutHandler}>
-              LOGOUT
-            </li>
-          )}
+          <li className={userLoggedInClasses} onClick={logoutHandler}>
+            LOGOUT
+          </li>
         </div>
 
         {!mobileMenuIsOpen ? (
@@ -84,17 +89,21 @@ const Navbar = () => {
           <div className="menu-items-mobile">
             <li className="menu-item">HOME</li>
             <li className="menu-item">PLANS</li>
-            <li className="menu-item" onClick={openLoginModalHandler}>
+            <li
+              className={userLoggedOutClasses}
+              onClick={openLoginModalHandler}
+            >
               LOGIN
             </li>
-            <li className="menu-item" onClick={openRegisterModalHandler}>
+            <li
+              className={userLoggedOutClasses}
+              onClick={openRegisterModalHandler}
+            >
               REGISTER
             </li>
-            {user && (
-              <li className="menu-item" onClick={logoutHandler}>
-                LOGOUT
-              </li>
-            )}
+            <li className={userLoggedInClasses} onClick={logoutHandler}>
+              LOGOUT
+            </li>
           </div>
         )}
       </nav>
