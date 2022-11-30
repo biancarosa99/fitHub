@@ -12,7 +12,7 @@ const HomeInfoContainer = () => {
         <div className="info-container">
           <div className="wrapper">
             <div className="image-container">
-              <img className="fitness-img" src={fitnessIMG} />
+              <img className="fitness-img" src={fitnessIMG} alt="fitness" />
             </div>
             <div className="text-container">
               <div className="title">SHAPE YOURSELF</div>
@@ -37,7 +37,7 @@ const HomeInfoContainer = () => {
               <button className="button">JOIN NOW</button>
             </div>
             <div className="image-container">
-              <img className="fitness-img" src={fitnessIMG} />
+              <img className="fitness-img" src={fitnessIMG} alt="fitness" />
             </div>
           </div>
         </div>

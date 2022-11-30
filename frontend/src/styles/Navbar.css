@@ -35,6 +35,11 @@
   display: block;
 }
 
+.anchor {
+  text-decoration: none;
+  color: white;
+}
+
 .hide-menu-item {
   display: none;
 }

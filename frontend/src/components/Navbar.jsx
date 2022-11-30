@@ -69,6 +69,16 @@ const Navbar = () => {
     setTimeout(() => setOpenSnackbar(false), 6000);
   };
 
+  const navigateToSignUpHandler = () => {
+    setLoginModalIsOpen(false);
+    setRegisterModalIsOpen(true);
+  };
+
+  const navigateToLoginHandler = () => {
+    setRegisterModalIsOpen(false);
+    setLoginModalIsOpen(true);
+  };
+
   const closeSnackbarHandler = () => {
     setOpenSnackbar(false);
   };
@@ -87,7 +97,11 @@ const Navbar = () => {
         </div>
 
         <div className="menu-items-desktop">
-          <li className="menu-item">HOME</li>
+          <li className="menu-item">
+            <a className="anchor" href="/">
+              HOME
+            </a>
+          </li>
           <li className="menu-item">PLANS</li>
           <li className={userLoggedOutClasses} onClick={openLoginModalHandler}>
             LOGIN
@@ -115,7 +129,9 @@ const Navbar = () => {
 
         {mobileMenuIsOpen && (
           <div className="menu-items-mobile">
-            <li className="menu-item">HOME</li>
+            <a className="anchor" href="/">
+              HOME
+            </a>
             <li className="menu-item">PLANS</li>
             <li
               className={userLoggedOutClasses}
@@ -139,12 +155,14 @@ const Navbar = () => {
         <Login
           closeLogin={closeLoginModalHandler}
           handleSucessfullLogin={sucssesfullLoginHandler}
+          navigateToSignUp={navigateToSignUpHandler}
         />
       )}
       {registerModalIsOpen && (
         <Register
           closeRegister={closeRegisterModalHandler}
           handleSucessfullRegister={sucssesfullRegisterHandler}
+          navigateToLogin={navigateToLoginHandler}
         />
       )}
       <SnackBar

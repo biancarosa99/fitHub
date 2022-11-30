@@ -88,7 +88,9 @@ const Login = (props) => {
             <div className={classes["signup-section"]}>
               <span>Not yet registered? </span>
               <span>
-                <a className={classes.anchor}>Sign up Here</a>
+                <a className={classes.anchor} onClick={props.navigateToSignUp}>
+                  Sign up Here
+                </a>
               </span>
             </div>
             <button className={classes["login-button"]}>Login</button>
