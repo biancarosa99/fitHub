@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const [dbErrors, setDbErrors] = useState("");
-  const { user, setUser } = useContext(AuthContext);
+
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const resolver = useYupValidationResolver(userLoginValidationSchema);
@@ -35,7 +36,7 @@ const Login = (props) => {
         console.log(res.data);
 
         setUser(res.data);
-        props.closeLogin();
+        props.handleSucessfullLogin();
         navigate("/");
       }
     } catch (err) {

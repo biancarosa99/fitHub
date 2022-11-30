@@ -6,14 +6,20 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
-import { useEffect } from "react";
 import AuthContext from "../context/AuthContext";
+import SnackBar from "./SnackBar";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [registerModalIsOpen, setRegisterModalIsOpen] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
   const { user, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const openMobileMenuHandler = () => {
     setMobileMenuIsOpen(true);
@@ -43,6 +49,28 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     setUser(null);
+    navigate("/");
+  };
+
+  const sucssesfullLoginHandler = () => {
+    setOpenSnackbar(true);
+    setSnackbarMessage("User Logged In succesfully!");
+    closeLoginModalHandler();
+
+    setTimeout(() => setOpenSnackbar(false), 6000);
+  };
+
+  const sucssesfullRegisterHandler = () => {
+    setOpenSnackbar(true);
+    setSnackbarMessage("User registered succesfully!");
+    closeRegisterModalHandler();
+    openLoginModalHandler();
+
+    setTimeout(() => setOpenSnackbar(false), 6000);
+  };
+
+  const closeSnackbarHandler = () => {
+    setOpenSnackbar(false);
   };
 
   const userLoggedOutClasses = user ? "menu-item hide-menu-item" : "menu-item";
@@ -107,10 +135,23 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-      {loginModalIsOpen && <Login closeLogin={closeLoginModalHandler} />}
-      {registerModalIsOpen && (
-        <Register closeRegister={closeRegisterModalHandler} />
+      {loginModalIsOpen && (
+        <Login
+          closeLogin={closeLoginModalHandler}
+          handleSucessfullLogin={sucssesfullLoginHandler}
+        />
       )}
+      {registerModalIsOpen && (
+        <Register
+          closeRegister={closeRegisterModalHandler}
+          handleSucessfullRegister={sucssesfullRegisterHandler}
+        />
+      )}
+      <SnackBar
+        open={openSnackbar}
+        closeSnackbarHandler={closeSnackbarHandler}
+        message={snackbarMessage}
+      />
     </React.Fragment>
   );
 };
