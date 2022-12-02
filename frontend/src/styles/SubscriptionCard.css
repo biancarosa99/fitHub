@@ -1,0 +1,30 @@
+.plans {
+  padding: 0 10%;
+}
+.box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2 rem;
+}
+
+.pricing .box-container .box {
+  padding: 2rem;
+  text-align: center;
+  border: 0.1rem solid #f45b69;
+}
+
+.buy-subscription-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 12px;
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+}
+
+.buy-subscription-button:hover {
+  opacity: 0.4;
+}
