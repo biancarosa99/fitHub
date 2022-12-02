@@ -92,6 +92,11 @@
     margin-top: 5px;
     border-bottom: 0.5px solid #f45b69;
   }
+
+  .anchor-mobile {
+    text-decoration: none;
+    color: #f45b69;
+  }
 }
 
 @media screen and (max-width: 480px) {
