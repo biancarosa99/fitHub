@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/Navbar.css";
 import LogoIMG from "../assets/fithublogo2.png";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -6,23 +6,32 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
+import AuthContext from "../context/AuthContext";
+import SnackBar from "./SnackBar";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [modalMenuIsOpen, setModalMenuIsOpen] = useState(false);
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [registerModalIsOpen, setRegisterModalIsOpen] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  const openModalHandler = () => {
-    setModalMenuIsOpen(true);
+  const { user, setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const openMobileMenuHandler = () => {
+    setMobileMenuIsOpen(true);
   };
 
-  const closeModalHandler = () => {
-    setModalMenuIsOpen(false);
+  const closeMobileMenuHandler = () => {
+    setMobileMenuIsOpen(false);
   };
 
   const openLoginModalHandler = () => {
     setLoginModalIsOpen(true);
-    modalMenuIsOpen && setModalMenuIsOpen(false);
+    mobileMenuIsOpen && setMobileMenuIsOpen(false);
   };
 
   const closeLoginModalHandler = () => {
@@ -31,12 +40,52 @@ const Navbar = () => {
 
   const openRegisterModalHandler = () => {
     setRegisterModalIsOpen(true);
-    modalMenuIsOpen && setModalMenuIsOpen(false);
+    mobileMenuIsOpen && setMobileMenuIsOpen(false);
   };
 
   const closeRegisterModalHandler = () => {
     setRegisterModalIsOpen(false);
   };
+
+  const logoutHandler = () => {
+    setUser(null);
+    navigate("/");
+  };
+
+  const sucssesfullLoginHandler = () => {
+    setOpenSnackbar(true);
+    setSnackbarMessage("User Logged In succesfully!");
+    closeLoginModalHandler();
+
+    setTimeout(() => setOpenSnackbar(false), 6000);
+  };
+
+  const sucssesfullRegisterHandler = () => {
+    setOpenSnackbar(true);
+    setSnackbarMessage("User registered succesfully!");
+    closeRegisterModalHandler();
+    openLoginModalHandler();
+
+    setTimeout(() => setOpenSnackbar(false), 6000);
+  };
+
+  const navigateToSignUpHandler = () => {
+    closeLoginModalHandler();
+    openRegisterModalHandler();
+  };
+
+  const navigateToLoginHandler = () => {
+    closeRegisterModalHandler();
+    openLoginModalHandler();
+  };
+
+  const closeSnackbarHandler = () => {
+    setOpenSnackbar(false);
+  };
+
+  const userLoggedOutClasses = user ? "menu-item hide-menu-item" : "menu-item";
+
+  const userLoggedInClasses = user ? "menu-item" : "menu-item hide-menu-item";
 
   return (
     <React.Fragment>
@@ -48,44 +97,79 @@ const Navbar = () => {
         </div>
 
         <div className="menu-items-desktop">
-          <li className="menu-item">HOME</li>
+          <li className="menu-item">
+            <a className="anchor" href="/">
+              HOME
+            </a>
+          </li>
           <li className="menu-item">PLANS</li>
-          <li className="menu-item" onClick={openLoginModalHandler}>
+          <li className={userLoggedOutClasses} onClick={openLoginModalHandler}>
             LOGIN
           </li>
-          <li className="menu-item" onClick={openRegisterModalHandler}>
+          <li
+            className={userLoggedOutClasses}
+            onClick={openRegisterModalHandler}
+          >
             REGISTER
+          </li>
+          <li className={userLoggedInClasses} onClick={logoutHandler}>
+            LOGOUT
           </li>
         </div>
 
-        {!modalMenuIsOpen && (
-          <li onClick={openModalHandler} className="menu-button">
+        {!mobileMenuIsOpen ? (
+          <li onClick={openMobileMenuHandler} className="mobile-menu-button">
             <MenuRoundedIcon />
           </li>
-        )}
-
-        {modalMenuIsOpen && (
-          <li onClick={closeModalHandler} className="menu-button">
+        ) : (
+          <li onClick={closeMobileMenuHandler} className="mobile-menu-button">
             <CloseRoundedIcon />
           </li>
         )}
-        {modalMenuIsOpen && (
+
+        {mobileMenuIsOpen && (
           <div className="menu-items-mobile">
-            <li className="menu-item">HOME</li>
+            <a className="anchor" href="/">
+              HOME
+            </a>
             <li className="menu-item">PLANS</li>
-            <li className="menu-item" onClick={openLoginModalHandler}>
+            <li
+              className={userLoggedOutClasses}
+              onClick={openLoginModalHandler}
+            >
               LOGIN
             </li>
-            <li className="menu-item" onClick={openRegisterModalHandler}>
+            <li
+              className={userLoggedOutClasses}
+              onClick={openRegisterModalHandler}
+            >
               REGISTER
+            </li>
+            <li className={userLoggedInClasses} onClick={logoutHandler}>
+              LOGOUT
             </li>
           </div>
         )}
       </nav>
-      {loginModalIsOpen && <Login closeLogin={closeLoginModalHandler} />}
-      {registerModalIsOpen && (
-        <Register closeRegister={closeRegisterModalHandler} />
+      {loginModalIsOpen && (
+        <Login
+          closeLogin={closeLoginModalHandler}
+          handleSucessfullLogin={sucssesfullLoginHandler}
+          navigateToSignUp={navigateToSignUpHandler}
+        />
       )}
+      {registerModalIsOpen && (
+        <Register
+          closeRegister={closeRegisterModalHandler}
+          handleSucessfullRegister={sucssesfullRegisterHandler}
+          navigateToLogin={navigateToLoginHandler}
+        />
+      )}
+      <SnackBar
+        open={openSnackbar}
+        closeSnackbarHandler={closeSnackbarHandler}
+        message={snackbarMessage}
+      />
     </React.Fragment>
   );
 };
