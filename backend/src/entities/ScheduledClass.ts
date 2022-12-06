@@ -25,7 +25,9 @@ export default class ScheduledClass extends BaseEntity {
   @Column()
   remaining_spots: number;
 
-  @OneToMany(() => Appointment, (appointment) => appointment.scheduledClass)
+  @OneToMany(() => Appointment, (appointment) => appointment.scheduledClass, {
+    onDelete: "CASCADE",
+  })
   appointments: Appointment[];
 
   @ManyToOne(() => FitnessClass, (fitnessClass) => fitnessClass)

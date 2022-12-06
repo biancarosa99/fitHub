@@ -13,10 +13,10 @@ export default class UserSubscription extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "timestamptz" })
   start_date: Date;
 
-  @Column()
+  @Column({ type: "timestamptz" })
   end_date: Date;
 
   @ManyToOne(() => User, (user) => user)

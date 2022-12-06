@@ -13,11 +13,15 @@ export const createClass = async (req: AuthenticatedRequest, res: Response) => {
     const scheduledClass = myDataSource.getRepository(ScheduledClass).create({
       date,
       remaining_spots,
-      fitnessClass: fitnessClassId,
-      location: locationId,
+      fitnessClass: {
+        id: fitnessClassId,
+      },
+      location: {
+        id: locationId,
+      },
     });
-    await scheduledClass.save();
-    return res.json(scheduledClass);
+    const result = await scheduledClass.save();
+    return res.json(result);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);

@@ -73,8 +73,9 @@ export const login = async (req: Request, res: Response) => {
 
     const id = user.id;
     const isTrainer = user.isTrainer;
+    const isAdmin = user.isAdmin;
     const token = jwt.sign(
-      { id, email, isTrainer },
+      { id, email, isTrainer, isAdmin },
       process.env.ACCESS_TOKEN_SECRET
     );
 

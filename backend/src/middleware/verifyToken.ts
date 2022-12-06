@@ -6,6 +6,7 @@ export type AuthenticatedRequest = Request & {
     id: string;
     email: string;
     isTrainer: boolean;
+    isAdmin: boolean;
     iat: number;
   };
 };

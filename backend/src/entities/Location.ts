@@ -18,6 +18,10 @@ export default class Location extends BaseEntity {
   @Column()
   address: string;
 
-  @OneToMany(() => ScheduledClass, (scheduledClass) => scheduledClass.location)
+  @OneToMany(
+    () => ScheduledClass,
+    (scheduledClass) => scheduledClass.location,
+    { onDelete: "CASCADE" }
+  )
   scheduledClasses: ScheduledClass[];
 }

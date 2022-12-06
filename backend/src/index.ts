@@ -8,6 +8,7 @@ const app = express();
 import authRoutes = require("./controllers/AuthController");
 import userRoutes = require("./controllers/UserController");
 import trainerRoutes = require("./controllers/TrainerController");
+import adminRoutes = require("./controllers/AdminController");
 
 myDataSource
   .initialize()
@@ -18,6 +19,7 @@ myDataSource
     app.use(authRoutes);
     app.use(userRoutes);
     app.use(trainerRoutes);
+    app.use(adminRoutes);
 
     app.listen(3000, function () {
       console.log(`Backend server running on port ${3000}`);

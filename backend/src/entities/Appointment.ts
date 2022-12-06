@@ -13,7 +13,7 @@ export default class Appointment extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(() => User, (user) => user)
+  @ManyToOne(() => User, (user) => user, { eager: true })
   user: User;
 
   @ManyToOne(() => ScheduledClass, (scheduledClass) => scheduledClass)
