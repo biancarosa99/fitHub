@@ -61,12 +61,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid #f45b69;
+  border-bottom: 2px solid #f45b69;
 }
 
 .confirm-title {
   font-size: 21px;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 .close-button {
   color: #f45b69;

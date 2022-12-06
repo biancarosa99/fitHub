@@ -10,7 +10,7 @@ const ConfirmAppointmentModal = (props) => {
       <div className="modal">
         <div className="modal-container">
           <div className="confirm-title-section">
-            <div className="confirm-title">Confirm Apppointemnt?</div>
+            <div className="confirm-title">Confirm Apppointement?</div>
             <button
               className="close-button"
               onClick={props.closeConfirmAppointment}

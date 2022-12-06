@@ -115,6 +115,6 @@
   .menu-item {
     /* margin-left: auto;
     margin-right: 0; */
-    border-bottom: 0.5px solid red;
+    border-bottom: 0.5px solid #f45b69;
   }
 }
