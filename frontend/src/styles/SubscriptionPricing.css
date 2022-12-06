@@ -1,16 +1,29 @@
-.plans {
+.pricing .box-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   padding: 0 10%;
-}
-.box-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 2 rem;
+  padding-bottom: 50px;
 }
 
 .pricing .box-container .box {
   padding: 2rem;
   text-align: center;
   border: 0.1rem solid #f45b69;
+  /* width: 70%; */
+}
+
+.subscription-facilities {
+  padding-bottom: 20px;
+  font-weight: 100;
+}
+
+.subscription-facility {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buy-subscription-button {

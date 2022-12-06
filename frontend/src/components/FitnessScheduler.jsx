@@ -5,18 +5,16 @@ import { useEffect } from "react";
 
 const FitnessScheduler = () => {
   useEffect(() => {
-    {
-      timeTable.map((day) => {
-        console.log(day);
-      });
-    }
+    timeTable.forEach((day) => {
+      console.log(day);
+    });
   }, []);
   return (
     <React.Fragment>
       <h1 className="heading">FitHub1</h1>
 
-      {timeTable.map((day) => (
-        <div className="table-container">
+      {timeTable.map((day, index) => (
+        <div className="table-container" key={index}>
           <table className="table">
             <caption>{day}</caption>
             <tbody>

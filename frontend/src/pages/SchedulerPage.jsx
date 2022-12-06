@@ -1,12 +1,12 @@
 import React from "react";
 import FitnessScheduler from "../components/FitnessScheduler";
-import SubscriptionCard from "../components/SubscriptionCard";
+import SubscriptionPricing from "../components/SubscriptionPricing";
 
 const SchedulerPage = () => {
   return (
     <React.Fragment>
       <FitnessScheduler />
-      <SubscriptionCard />
+      <SubscriptionPricing />
     </React.Fragment>
   );
 };
