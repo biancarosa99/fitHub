@@ -2,7 +2,6 @@ import { SvgIcon } from "@mui/material";
 import React from "react";
 import "../styles/SubscriptionPricing.css";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 function CheckIcon(props) {
   return (

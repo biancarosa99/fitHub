@@ -26,7 +26,7 @@
 .menu-items-mobile {
   display: none;
   opacity: 0;
-  z-index: 999;
+  z-index: 19;
 }
 
 .menu-item {
