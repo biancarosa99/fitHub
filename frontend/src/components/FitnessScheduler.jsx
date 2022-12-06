@@ -3,7 +3,7 @@ import "../styles/FitnessScheduler.css";
 import { timeTable } from "../assets/timeTableData";
 import { useEffect } from "react";
 
-const FitnessScheduler = () => {
+const FitnessScheduler = (props) => {
   useEffect(() => {
     timeTable.forEach((day) => {
       console.log(day);
@@ -25,7 +25,12 @@ const FitnessScheduler = () => {
                 <td data-lable="Fitness Class Name"> Kangoo Jumps</td>
                 <td data-lable="Avalable spots">5/17</td>
                 <td data-lable="Actions">
-                  <button className="join-class-button">Join Class</button>
+                  <button
+                    className="join-class-button"
+                    onClick={props.openConfirmAppointment}
+                  >
+                    Join Class
+                  </button>
                 </td>
               </tr>
 

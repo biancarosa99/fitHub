@@ -1,0 +1,138 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+  background-attachment: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.modal {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+
+  background-color: white;
+  padding: 10px;
+  border-radius: 14px;
+  width: 70%;
+  margin: 20vh auto;
+  /* position: relative; */
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+.modal-container {
+  padding: 10px;
+}
+
+.confirm-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid #f45b69;
+}
+
+.confirm-title {
+  font-size: 21px;
+  font-weight: 600;
+}
+.close-button {
+  color: #f45b69;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0px;
+}
+
+.class-details-section {
+  background-color: #faf9f6;
+  margin-top: 40px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+}
+
+.class-name {
+  color: #f45b69;
+  font-weight: 700;
+}
+
+.icon {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}
+
+.class-location {
+  font-weight: 500;
+  display: flex;
+  margin-top: 10px;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.class-date {
+  /* font-weight: 500; */
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.action-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  width: 100px;
+  margin-right: 20px;
+}
+
+.action-button:hover {
+  opacity: 0.4;
+}
