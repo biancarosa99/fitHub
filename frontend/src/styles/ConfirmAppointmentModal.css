@@ -1,58 +1,3 @@
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.75);
-  background-attachment: fixed;
-  bottom: 0px;
-  width: 100%;
-}
-
-.modal {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 30;
-  animation: slide-down 300ms ease-out forwards;
-
-  background-color: white;
-  padding: 10px;
-  border-radius: 14px;
-  width: 70%;
-  margin: 20vh auto;
-  /* position: relative; */
-}
-
-@media (min-width: 768px) {
-  .modal {
-    width: 40rem;
-    left: calc(50% - 20rem);
-  }
-}
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-up {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-3rem);
-  }
-}
-
 .modal-container {
   padding: 10px;
 }
@@ -87,6 +32,7 @@
 .class-name {
   color: #f45b69;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .icon {
@@ -136,4 +82,18 @@
 
 .action-button:hover {
   opacity: 0.4;
+}
+
+@media (max-width: 499px) {
+  .actions {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 0;
+  }
+
+  .action-button {
+    margin-right: 0;
+  }
 }
