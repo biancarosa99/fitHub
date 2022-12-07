@@ -2,14 +2,14 @@
   padding: 10px;
 }
 
-.confirm-title-section {
+.buy-title-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #f45b69;
 }
 
-.confirm-title {
+.buy-title {
   font-size: 21px;
   font-weight: 600;
   margin-bottom: 5px;
@@ -22,14 +22,14 @@
   padding: 0px;
 }
 
-.class-details-section {
+.subscription-details-section {
   background-color: #faf9f6;
   margin-top: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 10px;
 }
 
-.class-name {
+.subscription-name {
   color: #f45b69;
   font-weight: 700;
   text-transform: uppercase;
@@ -43,13 +43,23 @@
   margin-right: 2px;
 }
 
-.class-location {
+.subscription-location {
   font-weight: 500;
   display: flex;
   margin-top: 10px;
+  /* align-items: center;
+    justify-content: center; */
 }
 
-.class-date {
+.subscription-valability {
+  /* font-weight: 500; */
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.subscription-price {
   margin-top: 5px;
   display: flex;
   align-items: center;
