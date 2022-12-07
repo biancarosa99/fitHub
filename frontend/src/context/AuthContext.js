@@ -7,13 +7,7 @@ function getInitialState() {
   if (loggedInUser) {
     const user = JSON.parse(loggedInUser);
 
-    const returnedUser = {
-      ...user.user,
-      token: user.token,
-    };
-    console.log(returnedUser);
-
-    return returnedUser;
+    return user;
   }
 
   return null;
