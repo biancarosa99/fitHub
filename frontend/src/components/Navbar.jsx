@@ -87,7 +87,7 @@ const Navbar = () => {
 
   const userLoggedInClasses = user ? "menu-item" : "menu-item hide-menu-item";
 
-  const trainerLoggedInClasses = user
+  const trainerLoggedInClasses = user?.user?.isTrainer
     ? "menu-item"
     : "menu-item hide-menu-item";
 
@@ -116,9 +116,7 @@ const Navbar = () => {
           >
             REGISTER
           </li>
-          {user && user.user.isTrainer && (
-            <li className="menu-item">MY CLASSES</li>
-          )}
+          <li className={trainerLoggedInClasses}>MY CLASSES</li>
           <li className={userLoggedInClasses} onClick={logoutHandler}>
             LOGOUT
           </li>
@@ -152,7 +150,7 @@ const Navbar = () => {
             >
               REGISTER
             </li>
-            <li>MY CLASSES</li>
+            <li className={trainerLoggedInClasses}>MY CLASSES</li>
             <li className={userLoggedInClasses} onClick={logoutHandler}>
               LOGOUT
             </li>
