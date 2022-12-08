@@ -54,6 +54,13 @@
   opacity: 0.4;
 }
 
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 @media (max-width: 768px) {
   .trainer-classes-table {
     box-shadow: none;
