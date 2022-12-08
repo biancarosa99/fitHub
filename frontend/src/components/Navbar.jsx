@@ -116,7 +116,11 @@ const Navbar = () => {
           >
             REGISTER
           </li>
-          <li className={trainerLoggedInClasses}>MY CLASSES</li>
+          <li className={trainerLoggedInClasses}>
+            <a className="anchor" href="/trainerclasses">
+              MY CLASSES
+            </a>
+          </li>
           <li className={userLoggedInClasses} onClick={logoutHandler}>
             LOGOUT
           </li>
