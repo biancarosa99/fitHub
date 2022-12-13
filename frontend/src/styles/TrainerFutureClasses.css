@@ -61,6 +61,12 @@
   margin-top: 30px;
 }
 
+.add-fitness-class-container {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-bottom: 40px; */
+}
+
 @media (max-width: 768px) {
   .trainer-classes-table {
     box-shadow: none;
