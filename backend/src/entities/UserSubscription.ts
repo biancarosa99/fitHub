@@ -19,9 +19,11 @@ export default class UserSubscription extends BaseEntity {
   @Column({ type: "timestamptz" })
   end_date: Date;
 
-  @ManyToOne(() => User, (user) => user)
+  @ManyToOne(() => User, (user) => user, { eager: true })
   user: User;
 
-  @ManyToOne(() => Subscription, (subscription) => subscription)
+  @ManyToOne(() => Subscription, (subscription) => subscription, {
+    eager: true,
+  })
   subscription: Subscription;
 }

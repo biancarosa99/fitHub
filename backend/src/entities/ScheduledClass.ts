@@ -6,10 +6,14 @@ import {
   BaseEntity,
   Entity,
   Timestamp,
+  OneToOne,
+  JoinColumn,
+  PrimaryColumn,
 } from "typeorm";
 import Appointment from "./Appointment";
 import FitnessClass from "./FitnessClass";
 import Location from "./Location";
+import User from "./User";
 
 @Entity()
 export default class ScheduledClass extends BaseEntity {
@@ -30,9 +34,15 @@ export default class ScheduledClass extends BaseEntity {
   })
   appointments: Appointment[];
 
-  @ManyToOne(() => FitnessClass, (fitnessClass) => fitnessClass)
+  @ManyToOne(() => FitnessClass, (fitnessClass) => fitnessClass, {
+    eager: true,
+  })
   fitnessClass: FitnessClass;
 
-  @ManyToOne(() => Location, (location) => location)
+  @ManyToOne(() => Location, (location) => location, { eager: true })
   location: Location;
+
+  @ManyToOne(() => User, (user) => user, { eager: true })
+  @JoinColumn()
+  trainer: User;
 }

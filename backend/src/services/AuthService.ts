@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import { isEmpty, isEmail } from "class-validator";
 import bcrypt = require("bcrypt");
 import jwt = require("jsonwebtoken");

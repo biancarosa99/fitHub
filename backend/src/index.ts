@@ -9,6 +9,8 @@ import authRoutes = require("./controllers/AuthController");
 import userRoutes = require("./controllers/UserController");
 import trainerRoutes = require("./controllers/TrainerController");
 import adminRoutes = require("./controllers/AdminController");
+import scheduledClassRoutes = require("./controllers/ScheduledClassController");
+import subscriptionRoutes = require("./controllers/SubscriptionController");
 
 myDataSource
   .initialize()
@@ -20,6 +22,8 @@ myDataSource
     app.use(userRoutes);
     app.use(trainerRoutes);
     app.use(adminRoutes);
+    app.use(scheduledClassRoutes);
+    app.use(subscriptionRoutes);
 
     app.listen(3000, function () {
       console.log(`Backend server running on port ${3000}`);

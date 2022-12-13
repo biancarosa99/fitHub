@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import Subscription from "../entities/Subscription";
 import Location from "../entities/Location";
 import FitnessClass from "../entities/FitnessClass";
@@ -76,11 +76,8 @@ export const createSubscription = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  const { name, price } = req.body;
+  const { name, price, duration } = req.body;
   const { tkUser } = req;
-
-  const duration = 30;
-  console.log("duration", duration);
 
   if (!tkUser.isAdmin)
     return res
