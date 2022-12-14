@@ -20,10 +20,17 @@ const AddFitnessClass = () => {
     setFitnessClass(event.target.value);
   };
 
+  const addClassHandler = (e) => {
+    e.preventDefault();
+    console.log("form subbmited");
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className="add-class-container">
-        <form className="form-container">
+        <div className="add-class-title-container">
+          <h2 className="add-class-title">Schedule a new class</h2>
+        </div>
+        <form className="form-container" onSubmit={addClassHandler}>
           <FormControl fullWidth>
             <InputLabel
               id="demo-simple-select-label"
@@ -177,6 +184,9 @@ const AddFitnessClass = () => {
               }}
             ></DateTimePicker>
           </FormControl>
+          <div className="add-class-button-container">
+            <button className="add-class-button">Schedule class</button>
+          </div>
         </form>
       </div>
     </LocalizationProvider>
