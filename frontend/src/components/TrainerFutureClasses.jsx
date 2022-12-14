@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-const TrainerFutureClasses = () => {
+const TrainerFutureClasses = (props) => {
   const isMobile = useMediaQuery({ query: "(max-width: 548px)" });
 
   const paginationComponentSize = isMobile ? "small" : "large";
@@ -113,7 +113,7 @@ const TrainerFutureClasses = () => {
         <Pagination count={10} size={paginationComponentSize} />
       </div>
       <div className="add-fitness-class-container">
-        <Fab sx={fabPinkStyle} aria-label="add">
+        <Fab sx={fabPinkStyle} aria-label="add" onClick={props.handleClick}>
           <AddIcon />
         </Fab>
       </div>

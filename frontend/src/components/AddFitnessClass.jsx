@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import "../styles/AddFitnessClass.css";
 
-const AddFitnessClass = () => {
+const AddFitnessClass = forwardRef((props, ref) => {
   const [location, setLocation] = useState("");
   const [fitnessClass, setFitnessClass] = useState("");
   const [value, setValue] = React.useState("");
@@ -184,13 +184,13 @@ const AddFitnessClass = () => {
               }}
             ></DateTimePicker>
           </FormControl>
-          <div className="add-class-button-container">
+          <div className="add-class-button-container" ref={ref}>
             <button className="add-class-button">Schedule class</button>
           </div>
         </form>
       </div>
     </LocalizationProvider>
   );
-};
+});
 
 export default AddFitnessClass;
