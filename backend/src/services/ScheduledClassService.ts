@@ -8,6 +8,7 @@ import duration = require("dayjs/plugin/duration");
 import weekday = require("dayjs/plugin/weekday");
 import isBetween = require("dayjs/plugin/isBetween");
 import Appointment from "../entities/Appointment";
+import FitnessClass from "../entities/FitnessClass";
 dayjs.extend(isBetween);
 dayjs.extend(duration);
 dayjs.extend(weekday);
@@ -15,10 +16,16 @@ dayjs.extend(weekday);
 // adauga relations la query
 // pe front iti iei frumos day.js si ca sa ti puna la monday tuesday etc te joci cu dayjsu
 export const getCurrentWeekSchedule = async (req: Request, res: Response) => {
+  const { locationId } = req.body;
   try {
     const scheduledClasses = await myDataSource
       .getRepository(ScheduledClass)
       .find({
+        where: {
+          location: {
+            id: locationId,
+          },
+        },
         order: {
           date: "ASC",
         },
@@ -57,7 +64,7 @@ export const getScheduledClassUsers = async (
     return res.status(200).json(users);
   } catch (error) {
     console.log(error);
-    return error;
+    return res.status(400).json("Something went wrong!");
   }
 };
 
@@ -79,14 +86,27 @@ export const getScheduledClassInfo = async (
     return res.status(200).json(scheduledClass);
   } catch (error) {
     console.log(error);
-    return error;
+    return res.status(400).json("Something went wrong!");
   }
 };
 
-export const getFitnessClasses = async () => {};
+export const getFitnessClasses = async (req: Request, res: Response) => {
+  try {
+    const fitnessClasses = await myDataSource.getRepository(FitnessClass).find({
+      order: {
+        name: "ASC",
+      },
+    });
+    return res.status(200).json(fitnessClasses);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json("Something went wrong!");
+  }
+};
 
-export const getFitnessClassInfo = async () => {};
-
-export const getAvailableSpots = async () => {};
-
-module.exports = { getCurrentWeekSchedule, getScheduledClassUsers };
+module.exports = {
+  getCurrentWeekSchedule,
+  getScheduledClassUsers,
+  getScheduledClassInfo,
+  getFitnessClasses,
+};

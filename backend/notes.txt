@@ -1,0 +1,35 @@
+TO DO
+
+// de aplicat ca un user sa fie trainer - mai pe final - trebuie adaugata si entitate pt asta
+// pt admin sa accepte sau sa de a deny la invitatie - tot pe final
+
+// functii de get info
+// fa si o functie care arata cate spoturi sunt libere - to do !!!!!!!
+// de adaugat get subscription type info
+// de adaugat get fitnessclassinfo
+// get fitness class info idk yet
+// gandeste te ce requesturi trebe paginate
+// schimba din remaining spots in max spots
+// mai verifica la functii unde trebe daca e trainer and shit
+// verifica unde mai trebe query si unde body
+// imagini pt fitness class
+
+DONE
+
+// vezi care i treaba cu eager si relations - check
+// orar pe sapt curenta - important - check (mai trebuie adaugate raltions)
+// verifica cate locuri mai sunt libere - check
+// nu l lasa pe user sa si faca acelasi app de mai multe ori - check
+// trebe facuta o functie sa te stergi de pe appointment - check
+// poti sa faci appointmenturi doar pana la data cant iti expira subscriptionu - check
+// schimba la buysubscription din days in months - check
+// nu poti sa ti cumperi subscriptionuri care si dau overlap - check
+// verifica daca merge daca userul nu are subs valid dar alt user are - check
+// sa nu pui 2 fitness classes in acelasi timp -check
+// cant make appointments in the past - check
+// cant make fitness classes in the past - check
+// get user's appointments -check
+// get users from an appointment -check
+// get subscription types info - check
+// oraru e pe locatii -- de schimbat la weekly scheduler - check
+// get trainer classes - done vezi de relations!!
