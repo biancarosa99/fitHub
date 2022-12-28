@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import { useForm } from "react-hook-form";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -6,19 +7,55 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import "../styles/AddFitnessClass.css";
+import { useYupValidationResolver } from "../validations/YupResolver";
+import { scheduleClassValidationSchema } from "../validations/ScheduleClassValidation";
+import { useEffect } from "react";
 
 const AddFitnessClass = forwardRef((props, ref) => {
   const [location, setLocation] = useState("");
   const [fitnessClass, setFitnessClass] = useState("");
-  const [value, setValue] = React.useState("");
+  const [date, setDate] = useState("");
 
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
-  };
+  const resolver = useYupValidationResolver(scheduleClassValidationSchema);
 
-  const handleFitnessClassChange = (event) => {
-    setFitnessClass(event.target.value);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver,
+  });
+
+  const selectLocationValue = watch("selectLocation");
+
+  const selectFitnessClassValue = watch("selectFitnessClass");
+
+  const setFitnessClassDateValue = watch("setFitnessClassDate");
+
+  useEffect(() => {
+    register("selectLocation");
+    register("selectFitnessClass");
+    register("setFitnessClassDate");
+  }, [register]);
+
+  const handleLocationChange = (e) =>
+    setValue("selectLocation", e.target.value);
+
+  // const handleLocationChange = (event) => {
+  //   setLocation(event.target.value);
+  // };
+
+  const handleFitnessClassChange = (e) => {
+    setValue("selectFitnessClass", e.target.value);
   };
+  const handleFitnessClassDateChange = (e) => {
+    setValue("setFitnessClassDate", e.target.value);
+  };
+  // const handleFitnessClassChange = (event) => {
+  //   setFitnessClass(event.target.value);
+  // };
 
   const addClassHandler = (e) => {
     e.preventDefault();
@@ -43,9 +80,12 @@ const AddFitnessClass = forwardRef((props, ref) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={location}
+              // value={location}
+              value={selectLocationValue}
               label="Location"
               onChange={handleLocationChange}
+              // {...register("location")}
+
               MenuProps={{
                 sx: {
                   "&& .Mui-selected": {
@@ -83,6 +123,7 @@ const AddFitnessClass = forwardRef((props, ref) => {
               <MenuItem value={"FitHub3"}>FitHub 3</MenuItem>
             </Select>
           </FormControl>
+          <div>{errors?.location?.message}</div>
 
           <FormControl fullWidth>
             <InputLabel
@@ -97,7 +138,7 @@ const AddFitnessClass = forwardRef((props, ref) => {
               labelId="demo-simple-select-label"
               variant="outlined"
               id="demo-simple-select"
-              value={fitnessClass}
+              value={selectFitnessClassValue}
               label="Class"
               onChange={handleFitnessClassChange}
               MenuProps={{
@@ -178,9 +219,9 @@ const AddFitnessClass = forwardRef((props, ref) => {
                 />
               )}
               label="DateTimePicker"
-              value={value}
+              value={date}
               onChange={(newValue) => {
-                setValue(newValue);
+                setDate(newValue);
               }}
             ></DateTimePicker>
           </FormControl>
