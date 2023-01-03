@@ -40,6 +40,11 @@
   color: white;
 }
 
+.mobile-anchor {
+  text-decoration: none;
+  color: #f45b69;
+}
+
 .hide-menu-item {
   display: none;
 }

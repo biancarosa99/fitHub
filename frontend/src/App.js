@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
 import SchedulerPage from "./pages/SchedulerPage";
 import TrainerClassesPage from "./pages/TrainerClassesPage";
+import UserPlansPage from "./pages/UserPlansPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -21,6 +22,7 @@ function App() {
             path="/trainerclasses"
             element={<TrainerClassesPage />}
           ></Route>
+          <Route path="/myplans" element={<UserPlansPage />}></Route>
         </Routes>
       </Router>
     </AuthProvider>
