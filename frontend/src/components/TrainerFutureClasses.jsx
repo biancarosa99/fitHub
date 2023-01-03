@@ -4,6 +4,7 @@ import Pagination from "@mui/material/Pagination";
 import { useMediaQuery } from "react-responsive";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import zIndex from "@mui/material/styles/zIndex";
 
 const TrainerFutureClasses = (props) => {
   const isMobile = useMediaQuery({ query: "(max-width: 548px)" });
@@ -16,6 +17,7 @@ const TrainerFutureClasses = (props) => {
     "&:hover": {
       bgcolor: "#f5717d",
     },
+    zIndex: 0,
   };
 
   return (
@@ -37,7 +39,10 @@ const TrainerFutureClasses = (props) => {
             <td data-label="Class">TABATA FITNESS</td>
             <td data-label="Location">FitHub1</td>
             <td>
-              <button className="view-participants-button">
+              <button
+                className="view-participants-button"
+                onClick={props.openViewParticipantsList}
+              >
                 View Particiants
               </button>
             </td>
@@ -50,7 +55,10 @@ const TrainerFutureClasses = (props) => {
             <td data-label="Class">TABATA FITNESS</td>
             <td data-label="Location">FitHub1</td>
             <td>
-              <button className="view-participants-button">
+              <button
+                onClick={props.openViewParticipantsList}
+                className="view-participants-button"
+              >
                 View Particiants
               </button>
             </td>
@@ -113,7 +121,7 @@ const TrainerFutureClasses = (props) => {
         <Pagination count={10} size={paginationComponentSize} />
       </div>
       <div className="add-fitness-class-container">
-        <Fab sx={fabPinkStyle} aria-label="add" onClick={props.handleClick}>
+        <Fab sx={fabPinkStyle} aria-label="add" onClick={props.toggleAddClass}>
           <AddIcon />
         </Fab>
       </div>
