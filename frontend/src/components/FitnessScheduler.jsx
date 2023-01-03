@@ -36,10 +36,7 @@ const FitnessScheduler = (props) => {
             }}
             onClick={handleDropDownArrowClick}
           />
-          <div
-            className="dropdown-content"
-            style={{ display: visibleDropDown }}
-          >
+          <div className="dropdown-content">
             <div className="location-option">FitHub1</div>
             <div className="location-option">FitHub2</div>
             <div className="location-option">FitHub3</div>
