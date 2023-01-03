@@ -87,6 +87,10 @@ const Navbar = () => {
 
   const userLoggedInClasses = user ? "menu-item" : "menu-item hide-menu-item";
 
+  const trainerLoggedInClasses = user?.user?.isTrainer
+    ? "menu-item"
+    : "menu-item hide-menu-item";
+
   return (
     <React.Fragment>
       <nav className="navbar">
@@ -115,6 +119,11 @@ const Navbar = () => {
             onClick={openRegisterModalHandler}
           >
             REGISTER
+          </li>
+          <li className={trainerLoggedInClasses}>
+            <a className="anchor" href="/trainerclasses">
+              MY CLASSES
+            </a>
           </li>
           <li className={userLoggedInClasses} onClick={logoutHandler}>
             LOGOUT
@@ -155,6 +164,7 @@ const Navbar = () => {
             >
               REGISTER
             </li>
+            <li className={trainerLoggedInClasses}>MY CLASSES</li>
             <li className={userLoggedInClasses} onClick={logoutHandler}>
               LOGOUT
             </li>

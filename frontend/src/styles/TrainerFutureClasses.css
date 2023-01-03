@@ -1,0 +1,116 @@
+.table-container {
+  margin-top: 50px;
+  padding: 0 10%;
+  /* margin: 40px auto 0; */
+  padding-bottom: 50px;
+}
+
+.trainer-classes-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.trainer-classes-table thead {
+  background-color: #f45b69;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.trainer-classes-table thead tr th {
+  font-weight: medium;
+  padding: 16px;
+  vertical-align: top;
+  /* border: 1px solid white; */
+}
+
+.trainer-classes-table tbody tr td {
+  font-size: 14px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ecececec;
+}
+
+.fitness-class-start-hour {
+  font-weight: 700;
+  color: #f45b69;
+}
+
+.view-participants-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+.view-participants-button:hover {
+  opacity: 0.4;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.add-fitness-class-container {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-bottom: 40px; */
+}
+
+@media (max-width: 768px) {
+  .trainer-classes-table {
+    box-shadow: none;
+  }
+
+  .trainer-classes-table thead {
+    display: none;
+  }
+
+  .trainer-classes-table,
+  .trainer-classes-table tbody,
+  .trainer-classes-table tr,
+  .trainer-classes-table td {
+    display: block;
+    /* width: 100%; */
+  }
+
+  .trainer-classes-table tr {
+    margin-bottom: 25px;
+  }
+
+  .trainer-classes-table tbody tr {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  .trainer-classes-table tbody tr td {
+    text-align: right;
+    position: relative;
+  }
+
+  .trainer-classes-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 376px) {
+  .view-participants-button {
+    padding: 8x;
+    font-size: 11px;
+    border-radius: 14px;
+    font-weight: 500;
+  }
+}

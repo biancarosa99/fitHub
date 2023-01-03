@@ -4,13 +4,13 @@ const AuthContext = createContext(null);
 
 function getInitialState() {
   const loggedInUser = localStorage.getItem("user");
-  //   if (loggedInUser) {
-  //     const { token, user: data } = JSON.parse(loggedInUser);
-  //     console.log("Token: " + token);
-  //     console.log("user data: " + Object.values(data));
-  //   }
+  if (loggedInUser) {
+    const user = JSON.parse(loggedInUser);
 
-  return loggedInUser ? JSON.parse(loggedInUser) : null;
+    return user;
+  }
+
+  return null;
 }
 
 export const AuthProvider = ({ children }) => {
