@@ -102,7 +102,11 @@ const Navbar = () => {
               HOME
             </a>
           </li>
-          <li className="menu-item">PLANS</li>
+          <li className="menu-item">
+            <a className="anchor" href="/classesTimetable">
+              PLANS
+            </a>
+          </li>
           <li className={userLoggedOutClasses} onClick={openLoginModalHandler}>
             LOGIN
           </li>
@@ -129,10 +133,16 @@ const Navbar = () => {
 
         {mobileMenuIsOpen && (
           <div className="menu-items-mobile">
-            <a className="anchor" href="/">
-              HOME
-            </a>
-            <li className="menu-item">PLANS</li>
+            <li className="menu-item">
+              <a className="anchor-mobile" href="/">
+                HOME
+              </a>
+            </li>
+            <li className="menu-item">
+              <a className="anchor-mobile" href="/classesTimetable">
+                PLANS
+              </a>
+            </li>
             <li
               className={userLoggedOutClasses}
               onClick={openLoginModalHandler}

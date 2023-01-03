@@ -1,0 +1,106 @@
+.modal-container {
+  padding: 10px;
+}
+
+.buy-title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f45b69;
+}
+
+.buy-title {
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.close-button {
+  color: #f45b69;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0px;
+}
+
+.subscription-details-section {
+  background-color: #faf9f6;
+  margin-top: 40px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+}
+
+.subscription-name {
+  color: #f45b69;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.icon {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}
+
+.subscription-location {
+  font-weight: 500;
+  display: flex;
+  margin-top: 10px;
+  /* align-items: center;
+    justify-content: center; */
+}
+
+.subscription-valability {
+  /* font-weight: 500; */
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.subscription-price {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.action-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  width: 100px;
+  margin-right: 20px;
+}
+
+.action-button:hover {
+  opacity: 0.4;
+}
+
+@media (max-width: 499px) {
+  .actions {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 0;
+  }
+
+  .action-button {
+    margin-right: 0;
+  }
+}

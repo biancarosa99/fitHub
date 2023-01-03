@@ -41,7 +41,7 @@
   width: 200px;
   /* width: 100%; */
   /* background-color: blue; */
-  border-bottom: 0.5px solid red;
+  border-bottom: 0.5px solid #f45b69;
 }
 
 .register-title {
@@ -98,7 +98,7 @@
 }
 .error-message {
   font-size: 11px;
-  color: red;
+  color: #f45b69;
   padding-left: 5px;
   padding-top: 2px;
 }
