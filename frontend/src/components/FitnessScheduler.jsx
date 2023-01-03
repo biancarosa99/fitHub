@@ -3,22 +3,43 @@ import "../styles/FitnessScheduler.css";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { timeTable } from "../assets/timeTableData";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const FitnessScheduler = (props) => {
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
   useEffect(() => {
     timeTable.forEach((day) => {
       console.log(day);
     });
   }, []);
+
+  const handleDropDownArrowClick = () => {
+    setIsDropDownOpen((prev) => !prev);
+    console.log(isDropDownOpen);
+    console.log(visibleDropDown);
+  };
+
+  const visibleDropDown = isDropDownOpen ? "block" : "none";
+
   return (
     <React.Fragment>
       <div className="heading">
         <h1 className="heading-title">FitHub1</h1>
         <div className="dropdown">
           <ArrowDropDownIcon
-            sx={{ color: "#f45b69", fontSize: 60, cursor: "pointer" }}
+            sx={{
+              color: "#f45b69",
+              fontSize: 60,
+              cursor: "pointer",
+              marginTop: 1,
+            }}
+            onClick={handleDropDownArrowClick}
           />
-          <div className="dropdown-content">
+          <div
+            className="dropdown-content"
+            style={{ display: visibleDropDown }}
+          >
             <div className="location-option">FitHub1</div>
             <div className="location-option">FitHub2</div>
             <div className="location-option">FitHub3</div>

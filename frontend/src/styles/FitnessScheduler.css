@@ -22,6 +22,19 @@
   display: inline-block;
 }
 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* 
+.dropdown:active .dropdown-content {
+  display: block;
+} */
+
+.location-option:hover {
+  background-color: pink;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -37,14 +50,6 @@
   text-decoration: none;
   display: block;
   cursor: pointer;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.location-option:hover {
-  background-color: pink;
 }
 
 .table {
@@ -103,3 +108,17 @@
     min-width: auto;
   }
 }
+
+/* @media (hover: hover) and (pointer: fine) {
+  .join-class-button:hover {
+    opacity: 0.4;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .location-option:hover {
+    background-color: pink;
+  }
+} */
