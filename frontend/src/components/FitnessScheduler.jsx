@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/FitnessScheduler.css";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { timeTable } from "../assets/timeTableData";
 import { useEffect } from "react";
 
@@ -11,7 +12,19 @@ const FitnessScheduler = (props) => {
   }, []);
   return (
     <React.Fragment>
-      <h1 className="heading">FitHub1</h1>
+      <div className="heading">
+        <h1 className="heading-title">FitHub1</h1>
+        <div className="dropdown">
+          <ArrowDropDownIcon
+            sx={{ color: "#f45b69", fontSize: 60, cursor: "pointer" }}
+          />
+          <div className="dropdown-content">
+            <div className="location-option">FitHub1</div>
+            <div className="location-option">FitHub2</div>
+            <div className="location-option">FitHub3</div>
+          </div>
+        </div>
+      </div>
 
       {timeTable.map((day, index) => (
         <div className="table-container" key={index}>
