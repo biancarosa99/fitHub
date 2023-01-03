@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import AddFitnessClass from "../components/AddFitnessClass";
 import TrainerFutureClasses from "../components/TrainerFutureClasses";
+import ViewParticipantsList from "../components/ViewParticipantsList";
 
 const TrainerClassesPage = () => {
   const [isAddClassVisible, setIsAddClassVisible] = useState(false);
+  const [isViewParticipantsModalOpen, setIsViewParticipantsModalOpen] =
+    useState(false);
+
   const ref = useRef("");
 
   useEffect(() => {
@@ -13,17 +17,24 @@ const TrainerClassesPage = () => {
     }
   }, [isAddClassVisible]);
 
-  const handleClick = () => {
+  const handleToggleAddClass = () => {
     setIsAddClassVisible((prev) => !prev);
   };
 
   return (
     <React.Fragment>
       <TrainerFutureClasses
-        toggleAddClass={() => setIsAddClassVisible((prev) => !prev)}
-        handleClick={handleClick}
+        toggleAddClass={handleToggleAddClass}
+        openViewParticipantsList={() => setIsViewParticipantsModalOpen(true)}
       />
       {isAddClassVisible && <AddFitnessClass ref={ref} />}
+      {isViewParticipantsModalOpen && (
+        <ViewParticipantsList
+          closeViewParticipantsList={() =>
+            setIsViewParticipantsModalOpen(false)
+          }
+        />
+      )}
     </React.Fragment>
   );
 };

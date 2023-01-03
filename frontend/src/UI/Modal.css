@@ -6,7 +6,7 @@
   height: 100vh;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.75);
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   bottom: 0px;
   width: 100%;
 }
@@ -20,6 +20,7 @@
   border-radius: 14px;
   width: 70%;
   margin: 20vh auto;
+  /* max-height: 70vh; */
 }
 
 @media (min-width: 768px) {
