@@ -67,6 +67,12 @@
   transition: all 0.5s ease;
 }
 
-.add-class-button:hover {
+/* .add-class-button:hover {
   opacity: 0.4;
+} */
+
+@media (hover: hover) and (pointer: fine) {
+  .add-class-button:hover {
+    opacity: 0.4;
+  }
 }
