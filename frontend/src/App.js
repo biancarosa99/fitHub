@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
+import SchedulerPage from "./pages/SchedulerPage";
 import TrainerClassesPage from "./pages/TrainerClassesPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
@@ -15,6 +16,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/classesTimetable" element={<SchedulerPage />}></Route>
           <Route
             path="/trainerclasses"
             element={<TrainerClassesPage />}

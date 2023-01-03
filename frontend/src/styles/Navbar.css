@@ -26,7 +26,7 @@
 .menu-items-mobile {
   display: none;
   opacity: 0;
-  z-index: 999;
+  z-index: 19;
 }
 
 .menu-item {
@@ -92,6 +92,11 @@
     margin-top: 5px;
     border-bottom: 0.5px solid #f45b69;
   }
+
+  .anchor-mobile {
+    text-decoration: none;
+    color: #f45b69;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -110,6 +115,6 @@
   .menu-item {
     /* margin-left: auto;
     margin-right: 0; */
-    border-bottom: 0.5px solid red;
+    border-bottom: 0.5px solid #f45b69;
   }
 }
