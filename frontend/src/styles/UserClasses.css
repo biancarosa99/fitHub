@@ -1,0 +1,155 @@
+.table-actions-container {
+  padding: 0 10%;
+}
+
+.table-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-title {
+  text-transform: uppercase;
+}
+.table-see-future-classes {
+  display: flex;
+  align-items: center;
+  font-size: smaller;
+  justify-content: flex-end;
+  font-weight: 500;
+  color: #f45b69;
+}
+
+.table-see-past-classes {
+  display: flex;
+  align-items: center;
+  font-size: smaller;
+  justify-content: flex-start;
+  font-weight: 500;
+  color: #f45b69;
+}
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-classes {
+  cursor: pointer;
+}
+
+.table-container {
+  padding: 0 10%;
+  margin-top: 10px;
+  padding-bottom: 50px;
+}
+
+.user-classes-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.user-classes-table thead {
+  background-color: #f45b69;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.user-classes-table thead tr th {
+  font-weight: medium;
+  padding: 16px;
+  vertical-align: top;
+  /* border: 1px solid white; */
+}
+
+.user-classes-table tbody tr td {
+  font-size: 14px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ecececec;
+}
+
+.fitness-class-start-hour {
+  font-weight: 700;
+  color: #f45b69;
+}
+
+.cancel-class-button {
+  background-color: #f45b69;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+.cancel-class-button:hover {
+  opacity: 0.4;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.add-fitness-class-container {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-bottom: 40px; */
+}
+
+@media (max-width: 768px) {
+  .user-classes-table {
+    box-shadow: none;
+  }
+
+  .user-classes-table thead {
+    display: none;
+  }
+
+  .user-classes-table,
+  .user-classes-table tbody,
+  .user-classes-table tr,
+  .user-classes-table td {
+    display: block;
+    /* width: 100%; */
+  }
+
+  .user-classes-table tr {
+    margin-bottom: 25px;
+  }
+
+  .user-classes-table tbody tr {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  .user-classes-table tbody tr td {
+    text-align: right;
+    position: relative;
+  }
+
+  .user-classes-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 376px) {
+  .cancel-class-button {
+    padding: 8x;
+    font-size: 11px;
+    border-radius: 14px;
+    font-weight: 500;
+  }
+}
