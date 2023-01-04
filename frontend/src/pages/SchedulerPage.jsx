@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BuySubscriptionModal from "../components/BuySubscriptionModal";
 import ConfirmAppointmentModal from "../components/ConfirmAppointmentModal";
 import FitnessScheduler from "../components/FitnessScheduler";
 import SubscriptionPricing from "../components/SubscriptionPricing";
+import AuthContext from "../context/AuthContext";
+import SnackBar from "../UI/SnackBar";
 
 const SchedulerPage = () => {
+  const { user } = useContext(AuthContext);
+
   const [isAppoinmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [isBuySubscriptionModalOpen, setIsBuySubscriptionModalOpen] =
     useState(false);
+  const [openUserNotLoggedInSnackbar, setOpenUserNotLoggedInSnackbar] =
+    useState(false);
+
+  const userNotLoggedInHandler = () => {
+    setOpenUserNotLoggedInSnackbar(true);
+    setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
+  };
 
   const openConfirmAppointmentModalHandler = () => {
-    setIsAppointmentModalOpen(true);
-    console.log("modal opened");
+    if (user) {
+      setIsAppointmentModalOpen(true);
+      console.log("modal opened");
+    } else {
+      userNotLoggedInHandler();
+    }
   };
 
   const closeConfirmAppointmentModalHandler = () => {
@@ -20,13 +35,21 @@ const SchedulerPage = () => {
   };
 
   const openBuySubscriptionModalHandler = () => {
-    setIsBuySubscriptionModalOpen(true);
-    console.log("modal opened");
+    if (user) {
+      setIsBuySubscriptionModalOpen(true);
+      console.log("modal opened");
+    } else {
+      userNotLoggedInHandler();
+    }
   };
 
   const closeBuySubscriptionModalModalHandler = () => {
     setIsBuySubscriptionModalOpen(false);
     console.log("modal opened");
+  };
+
+  const closeSnackbarHandler = () => {
+    setOpenUserNotLoggedInSnackbar(false);
   };
   return (
     <React.Fragment>
@@ -50,6 +73,12 @@ const SchedulerPage = () => {
           price="100"
         />
       )}
+      <SnackBar
+        open={openUserNotLoggedInSnackbar}
+        closeSnackbarHandler={closeSnackbarHandler}
+        message="You can't perform this action if not logged in"
+        severity="error"
+      />
     </React.Fragment>
   );
 };
