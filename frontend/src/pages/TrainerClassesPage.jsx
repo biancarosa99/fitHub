@@ -58,6 +58,7 @@ const TrainerClassesPage = () => {
         open={openSnackbar}
         closeSnackbarHandler={closeSnackbarHandler}
         message={snackbarMessage}
+        severity="success"
       />
     </React.Fragment>
   );
