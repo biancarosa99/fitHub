@@ -1,32 +1,69 @@
-.trainer-future-classes-table-container {
-  margin-top: 50px;
+.table-actions-container {
   padding: 0 10%;
-  /* margin: 40px auto 0; */
+}
+
+.table-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-title {
+  text-transform: uppercase;
+}
+.table-see-future-classes {
+  display: flex;
+  align-items: center;
+  font-size: smaller;
+  justify-content: flex-end;
+  font-weight: 500;
+  color: #f45b69;
+  cursor: pointer;
+}
+
+.table-see-past-classes {
+  display: flex;
+  align-items: center;
+  font-size: smaller;
+  justify-content: flex-start;
+  font-weight: 500;
+  color: #f45b69;
+  cursor: pointer;
+}
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-container {
+  padding: 0 10%;
+  margin-top: 10px;
   padding-bottom: 50px;
 }
 
-.trainer-classes-table {
+.user-classes-table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px 5px 0 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.trainer-classes-table thead {
+.user-classes-table thead {
   background-color: #f45b69;
   color: white;
   font-size: 16px;
   font-weight: 600;
 }
 
-.trainer-classes-table thead tr th {
+.user-classes-table thead tr th {
   font-weight: medium;
   padding: 16px;
   vertical-align: top;
   /* border: 1px solid white; */
 }
 
-.trainer-classes-table tbody tr td {
+.user-classes-table tbody tr td {
   font-size: 14px;
   padding: 8px;
   text-align: center;
@@ -38,7 +75,7 @@
   color: #f45b69;
 }
 
-.view-participants-button {
+.cancel-class-button {
   background-color: #f45b69;
   color: white;
   padding: 10px;
@@ -50,7 +87,7 @@
   transition: all 0.5s ease;
 }
 
-.view-participants-button:hover {
+.cancel-class-button:hover {
   opacity: 0.4;
 }
 
@@ -68,35 +105,35 @@
 }
 
 @media (max-width: 768px) {
-  .trainer-classes-table {
+  .user-classes-table {
     box-shadow: none;
   }
 
-  .trainer-classes-table thead {
+  .user-classes-table thead {
     display: none;
   }
 
-  .trainer-classes-table,
-  .trainer-classes-table tbody,
-  .trainer-classes-table tr,
-  .trainer-classes-table td {
+  .user-classes-table,
+  .user-classes-table tbody,
+  .user-classes-table tr,
+  .user-classes-table td {
     display: block;
     /* width: 100%; */
   }
 
-  .trainer-classes-table tr {
+  .user-classes-table tr {
     margin-bottom: 25px;
   }
 
-  .trainer-classes-table tbody tr {
+  .user-classes-table tbody tr {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
-  .trainer-classes-table tbody tr td {
+  .user-classes-table tbody tr td {
     text-align: right;
     position: relative;
   }
 
-  .trainer-classes-table td::before {
+  .user-classes-table td::before {
     content: attr(data-label);
     position: absolute;
     left: 0;
@@ -107,7 +144,7 @@
 }
 
 @media (max-width: 376px) {
-  .view-participants-button {
+  .cancel-class-button {
     padding: 8x;
     font-size: 11px;
     border-radius: 14px;

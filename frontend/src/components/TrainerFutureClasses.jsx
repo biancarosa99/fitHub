@@ -21,7 +21,7 @@ const TrainerFutureClasses = (props) => {
   };
 
   return (
-    <div className="table-container">
+    <div className="trainer-future-classes-table-container">
       <table className="trainer-classes-table">
         <thead>
           <tr>

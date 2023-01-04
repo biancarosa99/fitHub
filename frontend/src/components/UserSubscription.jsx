@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/UserSubscription.css";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
