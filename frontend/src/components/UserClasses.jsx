@@ -49,21 +49,34 @@ const UserFutureClasses = (props) => {
         </div>
         <div className="table-see-classes">
           {upcomingClassesVisible && (
-            <div
-              className={classesActionsClassName}
-              onClick={makePreviousClassesVisible}
-            >
-              <KeyboardArrowLeftIcon /> PREVIOUS CLASSES
+            <div className={classesActionsClassName}>
+              <KeyboardArrowLeftIcon
+                sx={{ cursor: "pointer" }}
+                onClick={makePreviousClassesVisible}
+              />
+              <span
+                className="table-classes"
+                onClick={makePreviousClassesVisible}
+              >
+                {" "}
+                PREVIOUS CLASSES
+              </span>
             </div>
           )}
 
           {pastClassesVisible && (
-            <div
-              className={classesActionsClassName}
-              onClick={makeFutureClassesVisible}
-            >
-              FUTURE CLASSES
-              <KeyboardArrowRightIcon />
+            <div className={classesActionsClassName}>
+              <span
+                className="table-classes"
+                onClick={makeFutureClassesVisible}
+              >
+                {" "}
+                FUTURE CLASSES
+              </span>
+              <KeyboardArrowRightIcon
+                sx={{ cursor: "pointer" }}
+                onClick={makeFutureClassesVisible}
+              />
             </div>
           )}
         </div>

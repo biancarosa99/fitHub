@@ -12,29 +12,33 @@
 .table-title {
   text-transform: uppercase;
 }
-.table-see-future-classes {
+.trainer-table-see-future-classes {
   display: flex;
   align-items: center;
   font-size: smaller;
   justify-content: flex-end;
   font-weight: 500;
   color: #f45b69;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
-.table-see-past-classes {
+.trainer-table-see-past-classes {
   display: flex;
   align-items: center;
   font-size: smaller;
   justify-content: flex-start;
   font-weight: 500;
   color: #f45b69;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .table-actions {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.table-classes {
+  cursor: pointer;
 }
 
 .table-container {

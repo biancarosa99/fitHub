@@ -176,7 +176,9 @@ const Navbar = () => {
               REGISTER
             </li>
             <li className={trainerLoggedInClasses}>
-              <a className="mobile-anchor" href="/trainerclasses"></a>MY CLASSES
+              <a className="mobile-anchor" href="/trainerclasses">
+                MY CLASSES
+              </a>
             </li>
             <li className={normalUserLoggedInClasses}>
               <a className="mobile-anchor" href="/myplans">
