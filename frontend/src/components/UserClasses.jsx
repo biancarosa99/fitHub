@@ -10,13 +10,13 @@ import { useState } from "react";
 // import zIndex from "@mui/material/styles/zIndex";
 
 const UserFutureClasses = (props) => {
-  const [upcominClassesVisible, setUpcomingClassesVisible] = useState(true);
+  const [upcomingClassesVisible, setUpcomingClassesVisible] = useState(true);
   const [pastClassesVisible, setPastClassesVisible] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 548px)" });
 
   const paginationComponentSize = isMobile ? "small" : "large";
 
-  let classesActionsClassName = upcominClassesVisible
+  let classesActionsClassName = upcomingClassesVisible
     ? "table-see-past-classes"
     : "table-see-future-classes";
   // const fabPinkStyle = {
@@ -43,18 +43,21 @@ const UserFutureClasses = (props) => {
       <div className="table-actions-container">
         <div className="table-title-container">
           <h3 className="table-title">
-            {upcominClassesVisible ? "UPCOMING CLASSES" : "PREVIOUS CLASSES"}
+            {upcomingClassesVisible && "UPCOMING CLASSES"}
+            {pastClassesVisible && "PREVIOUS CLASSES"}{" "}
           </h3>
         </div>
         <div className="table-see-classes">
-          {upcominClassesVisible ? (
+          {upcomingClassesVisible && (
             <div
               className={classesActionsClassName}
               onClick={makePreviousClassesVisible}
             >
               <KeyboardArrowLeftIcon /> PREVIOUS CLASSES
             </div>
-          ) : (
+          )}
+
+          {pastClassesVisible && (
             <div
               className={classesActionsClassName}
               onClick={makeFutureClassesVisible}
