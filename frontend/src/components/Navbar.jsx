@@ -49,6 +49,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     setUser(null);
+    setMobileMenuIsOpen(false);
     navigate("/");
   };
 
