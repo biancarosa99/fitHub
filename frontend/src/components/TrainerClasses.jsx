@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/TrainerFutureClasses.css";
+import "../styles/TrainerClasses.css";
 import Pagination from "@mui/material/Pagination";
 import { useMediaQuery } from "react-responsive";
 import { Fab } from "@mui/material";
@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-const TrainerFutureClasses = (props) => {
+const TrainerClasses = (props) => {
   const [upcominClassesVisible, setUpcomingClassesVisible] = useState(true);
   const [pastClassesVisible, setPastClassesVisible] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 548px)" });
@@ -177,4 +177,4 @@ const TrainerFutureClasses = (props) => {
   );
 };
 
-export default TrainerFutureClasses;
+export default TrainerClasses;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import AddFitnessClass from "../components/AddFitnessClass";
-import TrainerFutureClasses from "../components/TrainerFutureClasses";
+import TrainerClasses from "../components/TrainerClasses";
 import ViewParticipantsList from "../components/ViewParticipantsList";
 import SnackBar from "../UI/SnackBar";
 
@@ -37,7 +37,7 @@ const TrainerClassesPage = () => {
 
   return (
     <React.Fragment>
-      <TrainerFutureClasses
+      <TrainerClasses
         toggleAddClass={handleToggleAddClass}
         openViewParticipantsList={() => setIsViewParticipantsModalOpen(true)}
       />
