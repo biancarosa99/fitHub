@@ -7,8 +7,8 @@ import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 import AuthContext from "../context/AuthContext";
-import SnackBar from "./SnackBar";
 import { useNavigate } from "react-router-dom";
+import SnackBar from "../UI/SnackBar";
 
 const Navbar = () => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);

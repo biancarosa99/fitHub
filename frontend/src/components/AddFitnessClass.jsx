@@ -29,6 +29,7 @@ const AddFitnessClass = forwardRef((props, ref) => {
     setLocation("");
     setFitnessClass("");
     setDate("");
+    props.sucsessfullScheduleNewClass();
     console.log("form subbmited");
   };
 

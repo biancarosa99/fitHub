@@ -2,13 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import AddFitnessClass from "../components/AddFitnessClass";
 import TrainerFutureClasses from "../components/TrainerFutureClasses";
 import ViewParticipantsList from "../components/ViewParticipantsList";
+import SnackBar from "../UI/SnackBar";
 
 const TrainerClassesPage = () => {
   const [isAddClassVisible, setIsAddClassVisible] = useState(false);
   const [isViewParticipantsModalOpen, setIsViewParticipantsModalOpen] =
     useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const ref = useRef("");
+
+  const snackbarMessage = "New class scheduled successfully!";
 
   useEffect(() => {
     const div = ref.current;
@@ -21,13 +25,28 @@ const TrainerClassesPage = () => {
     setIsAddClassVisible((prev) => !prev);
   };
 
+  const closeSnackbarHandler = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handleSucsessfullScheduleNewClass = () => {
+    handleToggleAddClass();
+    setOpenSnackbar(true);
+    setTimeout(() => setOpenSnackbar(false), 6000);
+  };
+
   return (
     <React.Fragment>
       <TrainerFutureClasses
         toggleAddClass={handleToggleAddClass}
         openViewParticipantsList={() => setIsViewParticipantsModalOpen(true)}
       />
-      {isAddClassVisible && <AddFitnessClass ref={ref} />}
+      {isAddClassVisible && (
+        <AddFitnessClass
+          ref={ref}
+          sucsessfullScheduleNewClass={handleSucsessfullScheduleNewClass}
+        />
+      )}
       {isViewParticipantsModalOpen && (
         <ViewParticipantsList
           closeViewParticipantsList={() =>
@@ -35,6 +54,11 @@ const TrainerClassesPage = () => {
           }
         />
       )}
+      <SnackBar
+        open={openSnackbar}
+        closeSnackbarHandler={closeSnackbarHandler}
+        message={snackbarMessage}
+      />
     </React.Fragment>
   );
 };
