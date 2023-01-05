@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import SchedulerPage from "./pages/SchedulerPage";
 import TrainerClassesPage from "./pages/TrainerClassesPage";
 import UserPlansPage from "./pages/UserPlansPage";
+import Footer from "./components/Footer";
+import "./App.css";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -14,16 +16,19 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/classesTimetable" element={<SchedulerPage />}></Route>
-          <Route
-            path="/trainerclasses"
-            element={<TrainerClassesPage />}
-          ></Route>
-          <Route path="/myplans" element={<UserPlansPage />}></Route>
-        </Routes>
+        <div className="app">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/classesTimetable" element={<SchedulerPage />}></Route>
+            <Route
+              path="/trainerclasses"
+              element={<TrainerClassesPage />}
+            ></Route>
+            <Route path="/myplans" element={<UserPlansPage />}></Route>
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </AuthProvider>
   );
