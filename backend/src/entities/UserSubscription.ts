@@ -13,15 +13,17 @@ export default class UserSubscription extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "timestamptz" })
   start_date: Date;
 
-  @Column()
+  @Column({ type: "timestamptz" })
   end_date: Date;
 
-  @ManyToOne(() => User, (user) => user)
+  @ManyToOne(() => User, (user) => user, { eager: true })
   user: User;
 
-  @ManyToOne(() => Subscription, (subscription) => subscription)
+  @ManyToOne(() => Subscription, (subscription) => subscription, {
+    eager: true,
+  })
   subscription: Subscription;
 }

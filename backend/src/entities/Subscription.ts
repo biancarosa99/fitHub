@@ -6,6 +6,11 @@ import {
   Entity,
 } from "typeorm";
 import UserSubscription from "./UserSubscription";
+import { IPostgresInterval } from "postgres-interval";
+import * as dayjs from "dayjs";
+dayjs().format();
+import duration = require("dayjs/plugin/duration");
+dayjs.extend(duration);
 
 @Entity()
 export default class Subscription extends BaseEntity {
