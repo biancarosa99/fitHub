@@ -25,7 +25,7 @@ export default class FitnessClass extends BaseEntity {
   level: string;
 
   @Column()
-  available_spots: number;
+  imgURL: string;
 
   @OneToMany(
     () => ScheduledClass,

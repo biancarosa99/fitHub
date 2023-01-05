@@ -15,6 +15,8 @@ import * as dayjs from "dayjs";
 dayjs().format();
 import duration = require("dayjs/plugin/duration");
 dayjs.extend(duration);
+import isBetween = require("dayjs/plugin/isBetween");
+dayjs.extend(isBetween);
 
 export const getUser = async (req: AuthenticatedRequest, res: Response) => {
   const { tkUser } = req;
@@ -70,7 +72,7 @@ export const makeAppointment = async (
       },
     });
 
-  if (appointments_count >= scheduledClass.remaining_spots)
+  if (appointments_count >= scheduledClass.max_spots)
     return res
       .status(405)
       .json("Maximum number of people reached for this fitness class!");
@@ -99,13 +101,14 @@ export const removeAppointment = async (
 ) => {
   const { appointmentId } = req.params;
   const { tkUser } = req;
-
   try {
-    const appointment = await myDataSource.getRepository(Appointment).findOne({
-      where: {
-        id: appointmentId,
-      },
-    });
+    const appointment = await myDataSource
+      .getRepository(Appointment)
+      .findOneOrFail({
+        where: {
+          id: appointmentId,
+        },
+      });
 
     if (tkUser.id !== appointment.user.id)
       return res
@@ -113,7 +116,7 @@ export const removeAppointment = async (
         .json("You are not authorized to remove this appointment!");
 
     await myDataSource.getRepository(Appointment).remove(appointment);
-    return res.json("Product deleted successfully");
+    return res.json(appointment);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
@@ -171,6 +174,7 @@ export const getUserAppointments = async (
   res: Response
 ) => {
   const { tkUser } = req;
+  const { take, page } = req.query;
   try {
     const scheduledAppointments = await myDataSource
       .getRepository(Appointment)
@@ -185,6 +189,8 @@ export const getUserAppointments = async (
             date: "ASC",
           },
         },
+        take: +take,
+        skip: (+page - 1) * +take,
       });
     const now = dayjs();
     const result = scheduledAppointments.filter((appointment) =>
@@ -202,6 +208,7 @@ export const getPastUserAppointments = async (
   res: Response
 ) => {
   const { tkUser } = req;
+  const { take, page } = req.query;
   try {
     const scheduledAppointments = await myDataSource
       .getRepository(Appointment)
@@ -216,12 +223,47 @@ export const getPastUserAppointments = async (
             date: "ASC",
           },
         },
+        take: +take,
+        skip: (+page - 1) * +take,
       });
     const now = dayjs();
     const result = scheduledAppointments.filter((appointment) =>
       dayjs(now).isSameOrAfter(appointment.scheduledClass.date)
     );
     return res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json("Something went wrong!");
+  }
+};
+
+export const getActiveSubscription = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
+  const { tkUser } = req;
+  try {
+    const activeSubscription = await myDataSource
+      .getRepository(UserSubscription)
+      .find({
+        where: {
+          user: {
+            id: tkUser.id,
+          },
+        },
+        order: {
+          start_date: "DESC",
+        },
+      });
+
+    if (
+      dayjs().isBetween(
+        activeSubscription[0].start_date,
+        activeSubscription[0].end_date
+      )
+    )
+      return res.status(200).json(activeSubscription[0]);
+    else return res.status(404).json("Did not find any active subscriptions");
   } catch (error) {
     console.log(error);
     return res.status(400).json("Something went wrong!");
@@ -235,4 +277,5 @@ module.exports = {
   buySubscription,
   getUserAppointments,
   getPastUserAppointments,
+  getActiveSubscription,
 };

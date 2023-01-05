@@ -49,10 +49,23 @@ export const getScheduledClassUsers = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  // const {tkUser} = req; verificari de genu tkuser !== baza de date user sa nu acceseze altcnv clasele lu asta
+  const { tkUser } = req;
   const { scheduledClassId } = req.params;
-
   try {
+    const scheduledClass = await myDataSource
+      .getRepository(ScheduledClass)
+      .findOne({
+        where: {
+          id: scheduledClassId,
+        },
+      });
+    if (tkUser.id !== scheduledClass.trainer.id)
+      return res
+        .status(403)
+        .json(
+          "You are not authorized to view this trainer's scheduled class users"
+        );
+
     const appointments = await myDataSource.getRepository(Appointment).find({
       where: {
         scheduledClass: {
@@ -68,13 +81,35 @@ export const getScheduledClassUsers = async (
   }
 };
 
+export const getScheduledClassSpots = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
+  const { scheduledClassId } = req.params;
+  try {
+    const [appointments, total] = await myDataSource
+      .getRepository(Appointment)
+      .findAndCount({
+        where: {
+          scheduledClass: {
+            id: scheduledClassId,
+          },
+        },
+      });
+    return res.status(200).json(total);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json("Something went wrong!");
+  }
+};
+
 export const getScheduledClassInfo = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  // const {tkUser} = req; verificari de genu tkuser !== baza de date user sa nu acceseze altcnv clasele lu asta
+  const { tkUser } = req;
   const { scheduledClassId } = req.params;
-
+  console.log(tkUser);
   try {
     const scheduledClass = await myDataSource
       .getRepository(ScheduledClass)
@@ -83,21 +118,16 @@ export const getScheduledClassInfo = async (
           id: scheduledClassId,
         },
       });
+    console.log(
+      "tkuser id :" + tkUser.id + " trainer id :" + scheduledClass.trainer.id
+    );
+    if (tkUser.id !== scheduledClass.trainer.id)
+      return res
+        .status(403)
+        .json(
+          "You are not authorized to view this trainer's scheduled class informations"
+        );
     return res.status(200).json(scheduledClass);
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json("Something went wrong!");
-  }
-};
-
-export const getFitnessClasses = async (req: Request, res: Response) => {
-  try {
-    const fitnessClasses = await myDataSource.getRepository(FitnessClass).find({
-      order: {
-        name: "ASC",
-      },
-    });
-    return res.status(200).json(fitnessClasses);
   } catch (error) {
     console.log(error);
     return res.status(400).json("Something went wrong!");
@@ -107,6 +137,6 @@ export const getFitnessClasses = async (req: Request, res: Response) => {
 module.exports = {
   getCurrentWeekSchedule,
   getScheduledClassUsers,
+  getScheduledClassSpots,
   getScheduledClassInfo,
-  getFitnessClasses,
 };

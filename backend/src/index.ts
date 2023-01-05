@@ -12,6 +12,7 @@ import adminRoutes = require("./controllers/AdminController");
 import scheduledClassRoutes = require("./controllers/ScheduledClassController");
 import subscriptionRoutes = require("./controllers/SubscriptionController");
 import locationRoutes = require("./controllers/LocationController");
+import fitnessClassRoutes = require("./controllers/FitnessClassController");
 
 myDataSource
   .initialize()
@@ -26,6 +27,7 @@ myDataSource
     app.use(scheduledClassRoutes);
     app.use(subscriptionRoutes);
     app.use(locationRoutes);
+    app.use(fitnessClassRoutes);
 
     app.listen(3000, function () {
       console.log(`Backend server running on port ${3000}`);

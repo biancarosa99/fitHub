@@ -4,10 +4,6 @@ import Location from "../entities/Location";
 import FitnessClass from "../entities/FitnessClass";
 import { myDataSource } from "../app-data-source";
 import { AuthenticatedRequest } from "../middleware/verifyToken";
-import * as dayjs from "dayjs";
-dayjs().format();
-import duration = require("dayjs/plugin/duration");
-dayjs.extend(duration);
 
 export const createLocation = async (
   req: AuthenticatedRequest,
@@ -34,19 +30,11 @@ export const createLocation = async (
   }
 };
 
-const convertInterval = (interval: duration.Duration) => {
-  return {
-    years: interval.get("years"),
-    months: interval.get("months"),
-    days: interval.get("days"),
-  };
-};
-
 export const createFitnessClass = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  const { name, description, duration, level, available_spots } = req.body;
+  const { name, description, duration, level, imgURL } = req.body;
   const { tkUser } = req;
 
   console.log(tkUser);
@@ -62,7 +50,7 @@ export const createFitnessClass = async (
       description,
       duration,
       level,
-      available_spots,
+      imgURL,
     });
     const result = await fitnessClass.save();
     return res.json(result);

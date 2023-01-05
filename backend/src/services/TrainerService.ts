@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { query, Request, Response } from "express";
 import ScheduledClass from "../entities/ScheduledClass";
 import { myDataSource } from "../app-data-source";
 import { AuthenticatedRequest } from "../middleware/verifyToken";
@@ -14,7 +14,6 @@ export const createFitnessClass = async (
 ) => {
   const { date, remaining_spots, fitnessClassId, locationId } = req.body;
   const { tkUser } = req;
-  console.log(tkUser);
   try {
     if (!tkUser.isTrainer) return res.status(401).json("Not a trainer");
 
@@ -28,7 +27,7 @@ export const createFitnessClass = async (
 
     const scheduledClass = myDataSource.getRepository(ScheduledClass).create({
       date,
-      remaining_spots,
+      max_spots: remaining_spots,
       fitnessClass: {
         id: fitnessClassId,
       },
@@ -71,7 +70,7 @@ export const removeFitnessClass = async (
         .json("You are not authorized to remove this scheduled class!");
 
     await myDataSource.getRepository(ScheduledClass).remove(scheduledClass);
-    return res.json("Product deleted successfully");
+    return res.json("Fitness class deleted successfully");
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
@@ -83,10 +82,11 @@ export const getTrainerClasses = async (
   res: Response
 ) => {
   const { tkUser } = req;
+  const { take, page } = req.query;
   try {
-    const scheduledClasses = await myDataSource
+    const [scheduledClasses, total] = await myDataSource
       .getRepository(ScheduledClass)
-      .find({
+      .findAndCount({
         where: {
           trainer: {
             id: tkUser.id,
@@ -95,6 +95,8 @@ export const getTrainerClasses = async (
         order: {
           date: "ASC",
         },
+        take: +take,
+        skip: (+page - 1) * +take,
       });
     const now = dayjs();
     const result = scheduledClasses.filter((fitnessClass) =>
@@ -112,10 +114,11 @@ export const getPastTrainerClasses = async (
   res: Response
 ) => {
   const { tkUser } = req;
+  const { take, page } = req.query;
   try {
-    const scheduledClasses = await myDataSource
+    const [scheduledClasses, total] = await myDataSource
       .getRepository(ScheduledClass)
-      .find({
+      .findAndCount({
         where: {
           trainer: {
             id: tkUser.id,
@@ -124,6 +127,8 @@ export const getPastTrainerClasses = async (
         order: {
           date: "ASC",
         },
+        take: +take,
+        skip: (+page - 1) * +take,
       });
     const now = dayjs();
     const result = scheduledClasses.filter((fitnessClass) =>

@@ -8,9 +8,9 @@ import {
 } from "../services/TrainerService";
 import { verifyToken } from "../middleware/verifyToken";
 
-router.post("/trainer/create", verifyToken, createFitnessClass);
-router.delete("/trainer/:id", verifyToken, removeFitnessClass);
-router.get("/trainer/", verifyToken, getTrainerClasses);
-router.get("/trainer/past", verifyToken, getPastTrainerClasses);
+router.post("/trainer/create", verifyToken, createFitnessClass); // create a scheduled class
+router.delete("/trainer/:id", verifyToken, removeFitnessClass); // remove a scheduled class
+router.get("/trainer/", verifyToken, getTrainerClasses); // get all the upcoming trainer's classes
+router.get("/trainer/past", verifyToken, getPastTrainerClasses); // get all the past trainer's classes
 
 module.exports = router;

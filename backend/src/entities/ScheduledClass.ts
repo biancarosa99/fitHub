@@ -27,7 +27,7 @@ export default class ScheduledClass extends BaseEntity {
   // available_spots: number;
 
   @Column()
-  remaining_spots: number;
+  max_spots: number;
 
   @OneToMany(() => Appointment, (appointment) => appointment.scheduledClass, {
     onDelete: "CASCADE",

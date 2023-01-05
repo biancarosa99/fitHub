@@ -3,6 +3,6 @@ const router = express.Router();
 
 import { getLocations } from "../services/LocationService";
 
-router.get("/locations/", getLocations);
+router.get("/location/", getLocations); // get locations
 
 module.exports = router;
