@@ -1,18 +1,74 @@
 import React from "react";
 import "../styles/FitnessScheduler.css";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { timeTable } from "../assets/timeTableData";
+import { weekDays } from "../assets/timeTableData";
 import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const FitnessScheduler = (props) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [locations, setLocations] = useState([]);
+  const [timetableLocation, setTimetableLocation] = useState("");
+  const [fitnessSchedule, setFitnessSchedule] = useState({});
+
+  const dayjs = require("dayjs");
+
+  let scheduleByDays = {
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Frday: [],
+    Saturday: [],
+  };
+
+  const getLocations = async () => {
+    try {
+      const res = await axios.get("/location/");
+      setLocations(res.data);
+      setTimetableLocation(res.data[0].name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getClassesForEachWeekDay = (schedule) => {
+    schedule.forEach((fitnessClass) => {
+      const dayOfWeek = dayjs(fitnessClass.date).format("dddd");
+      console.log(dayOfWeek);
+      scheduleByDays[dayOfWeek].push(fitnessClass);
+    });
+  };
+
+  const getFitnessSchedule = async () => {
+    try {
+      const res = await axios.get("/schedule/", {
+        params: {
+          locationId: timetableLocation.id,
+        },
+      });
+
+      const schedule = res.data;
+
+      if (schedule) {
+        getClassesForEachWeekDay(schedule);
+        setFitnessSchedule(scheduleByDays);
+        console.log(fitnessSchedule);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    timeTable.forEach((day) => {
-      console.log(day);
-    });
+    getLocations();
+    getFitnessSchedule();
   }, []);
+
+  useEffect(() => {
+    getFitnessSchedule();
+  }, [timetableLocation]);
 
   const handleDropDownArrowClick = () => {
     setIsDropDownOpen((prev) => !prev);
@@ -25,7 +81,7 @@ const FitnessScheduler = (props) => {
   return (
     <React.Fragment>
       <div className="heading">
-        <h1 className="heading-title">FitHub1</h1>
+        <h1 className="heading-title">{timetableLocation}</h1>
         <div className="dropdown">
           <ArrowDropDownIcon
             sx={{
@@ -37,64 +93,49 @@ const FitnessScheduler = (props) => {
             onClick={handleDropDownArrowClick}
           />
           <div className="dropdown-content">
-            <div className="location-option">FitHub1</div>
-            <div className="location-option">FitHub2</div>
-            <div className="location-option">FitHub3</div>
+            {locations.map((location, index) => (
+              <div
+                className="location-option"
+                key={index}
+                onClick={() => setTimetableLocation(location.name)}
+              >
+                {location.name}
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {timeTable.map((day, index) => (
+      {weekDays.map((day, index) => (
         <div className="table-container" key={index}>
           <table className="table">
             <caption>{day}</caption>
             <tbody>
-              <tr>
-                <td data-lable="Start Hour" className="fitness-start-hour-cell">
-                  10:00
-                </td>
-                <td data-lable="Fitness Class Name"> Kangoo Jumps</td>
-                <td data-lable="Avalable spots">5/17</td>
-                <td data-lable="Actions">
-                  <button
-                    className="join-class-button"
-                    onClick={props.openConfirmAppointment}
-                  >
-                    Join Class
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td data-lable="Start Hour" className="fitness-start-hour-cell">
-                  11:00
-                </td>
-                <td data-lable="Fitness Class Name">Tabata</td>
-                <td data-lable="Avalable spots">5/17</td>
-                <td data-lable="Actions">
-                  <button className="join-class-button">Join Class</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-lable="Start Hour" className="fitness-start-hour-cell">
-                  18:00
-                </td>
-                <td data-lable="Fitness Class Name"> Fitbalance</td>
-                <td data-lable="Avalable spots">5/17</td>
-                <td data-lable="Actions">
-                  <button className="join-class-button">Join Class</button>
-                </td>
-              </tr>
-              <tr>
-                <td data-lable="Start Hour" className="fitness-start-hour-cell">
-                  19:00
-                </td>
-                <td data-lable="Fitness Class Name"> Cycling</td>
-                <td data-lable="Avalable spots">5/17</td>
-                <td data-lable="Actions">
-                  <button className="join-class-button">Join Class</button>
-                </td>
-              </tr>
+              {fitnessSchedule[day] &&
+                fitnessSchedule[day].map((scheduledClass, index) => (
+                  <tr key={index}>
+                    <td
+                      data-lable="Start Hour"
+                      className="fitness-start-hour-cell"
+                    >
+                      11:00
+                    </td>
+                    <td data-lable="Fitness Class Name">
+                      {scheduledClass.fitnessClass.name}
+                    </td>
+                    <td data-lable="Avalable spots">
+                      nu uita sa completezi/{scheduledClass.max_spots}
+                    </td>
+                    <td data-lable="Actions">
+                      <button
+                        className="join-class-button"
+                        onClick={props.openConfirmAppointment}
+                      >
+                        Join Class
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
