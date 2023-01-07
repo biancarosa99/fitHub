@@ -19,30 +19,30 @@ const ConfirmAppointmentModal = (props) => {
           </button>
         </div>
 
-        <div className="class-details-section">
-          <div className="class-name">KANGOO JUMPS</div>
-          <div className="class-location">
-            <span className="icon">
+        <div className="confirm-class-details-section">
+          <div className="confirm-class-name">KANGOO JUMPS</div>
+          <div className="confirm-class-location">
+            <div className="icon">
               <LocationOnOutlinedIcon
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
-            </span>
-            <span> FitHub1</span>
+            </div>
+            <div className="text"> FitHub1</div>
           </div>
-          <div className="class-date">
-            <span className="icon">
+          <div className="confirm-class-date">
+            <div className="icon date-icon">
               <CalendarMonthOutlinedIcon
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
-            </span>
-            <span> 6th December 2022 10:00-11:00</span>
+            </div>
+            <div className="text"> 6th December 2022 10:00-11:00</div>
           </div>
         </div>
 
         <div className="actions">
-          <button className="action-button">Confirm</button>
+          <button className="actions-button">Confirm</button>
           <button
-            className="action-button"
+            className="actions-button"
             onClick={props.closeConfirmAppointment}
           >
             Cancel

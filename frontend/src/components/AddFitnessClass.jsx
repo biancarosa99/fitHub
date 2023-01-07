@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import "../styles/AddFitnessClass.css";
@@ -31,6 +31,7 @@ const AddFitnessClass = forwardRef((props, ref) => {
     setDate("");
     props.sucsessfullScheduleNewClass();
     console.log("form subbmited");
+    console.log(date);
   };
 
   // const resolver = useYupValidationResolver(scheduleClassValidationSchema);
@@ -69,8 +70,8 @@ const AddFitnessClass = forwardRef((props, ref) => {
   // };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div className="add-class-container">
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="add-class-container" ref={ref}>
         <div className="add-class-title-container">
           <h2 className="add-class-title">Schedule a new class</h2>
         </div>
@@ -230,7 +231,7 @@ const AddFitnessClass = forwardRef((props, ref) => {
               }}
             ></DateTimePicker>
           </FormControl>
-          <div className="add-class-button-container" ref={ref}>
+          <div className="add-class-button-container">
             <button className="add-class-button">Schedule class</button>
           </div>
         </form>

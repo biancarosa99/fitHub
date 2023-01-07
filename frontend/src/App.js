@@ -16,8 +16,8 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <Navbar />
         <div className="app">
-          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/classesTimetable" element={<SchedulerPage />}></Route>
