@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Footer.css";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -7,53 +7,44 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Footer = () => {
+  const [locations, setLocations] = useState([]);
+
+  const getLocations = async () => {
+    try {
+      const res = await axios.get("/location/");
+      setLocations(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLocations();
+  }, []);
+
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-row">
           <div className="footer-column">
             <h4 className="footer-column-title">LOCATIONS</h4>
+
             <ul className="footer-column-list">
-              <li className="footer-column-list-item">
-                <a href="#something">
-                  {" "}
-                  <LocationOnOutlinedIcon sx={{ fontSize: 21 }} />
-                  <span>FitHub1</span>
-                </a>
-              </li>
-              <li className="footer-column-list-item">
-                <a href="#something">
-                  {" "}
-                  <LocationOnOutlinedIcon sx={{ fontSize: 21 }} />
-                  <span>FitHub2</span>
-                </a>
-              </li>
-              <li className="footer-column-list-item">
-                <a href="#something">
-                  {" "}
-                  <LocationOnOutlinedIcon sx={{ fontSize: 21 }} />
-                  <span>FitHub3</span>
-                </a>
-              </li>
+              {locations.map((location, index) => (
+                <li className="footer-column-list-item" key={index}>
+                  <a href="#something">
+                    <LocationOnOutlinedIcon sx={{ fontSize: 21 }} />
+                    <span>{location.name}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-
-          {/* <div className="footer-column">
-            <h4 className="footer-column-title">LOCATIONS</h4>
-            <ul className="footer-column-list">
-              <li className="footer-column-list-item">
-                <a href="#something">FitHub1</a>
-              </li>
-              <li className="footer-column-list-item">
-                <a href="#something">FitHub2</a>
-              </li>
-              <li className="footer-column-list-item">
-                <a href="#something">FitHub3</a>
-              </li>
-            </ul>
-          </div> */}
 
           <div className="footer-column">
             <h4 className="footer-column-title">CONTACT</h4>
