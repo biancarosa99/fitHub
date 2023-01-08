@@ -58,7 +58,6 @@ const FitnessScheduler = (props) => {
       if (schedule) {
         const scheduleByDaysArray = getClassesForEachWeekDay(schedule);
         setFitnessSchedule(scheduleByDaysArray);
-        console.log(fitnessSchedule);
       }
     } catch (error) {
       console.log(error);
@@ -151,7 +150,7 @@ const FitnessScheduler = (props) => {
                           );
                         }}
                       >
-                        Join Class
+                        Show Details
                       </button>
                     </td>
                   </tr>

@@ -17,7 +17,6 @@ const Footer = () => {
     try {
       const res = await axios.get("/location/");
       setLocations(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }

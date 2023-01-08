@@ -15,6 +15,11 @@ const SchedulerPage = () => {
   const [openUserNotLoggedInSnackbar, setOpenUserNotLoggedInSnackbar] =
     useState(false);
 
+  const [
+    opensSuccessfulAppointmentSnackbar,
+    setOpenSuccessfulAppointmentSnackbar,
+  ] = useState(true);
+
   const [appointmentDetails, setAppointmentDetails] = useState({});
 
   const userNotLoggedInHandler = () => {
@@ -39,7 +44,6 @@ const SchedulerPage = () => {
         classMaxSpots,
       };
       setAppointmentDetails(appointmentDetails);
-      console.log("classId" + classId);
     } else {
       userNotLoggedInHandler();
     }
@@ -47,7 +51,12 @@ const SchedulerPage = () => {
 
   const closeConfirmAppointmentModalHandler = () => {
     setIsAppointmentModalOpen(false);
-    console.log("modal opened");
+  };
+
+  const succsessfulApointmentHandler = () => {
+    closeConfirmAppointmentModalHandler();
+    setOpenSuccessfulAppointmentSnackbar(true);
+    setTimeout(() => setOpenSuccessfulAppointmentSnackbar(false), 6000);
   };
 
   const openBuySubscriptionModalHandler = () => {
@@ -64,9 +73,6 @@ const SchedulerPage = () => {
     console.log("modal opened");
   };
 
-  const closeSnackbarHandler = () => {
-    setOpenUserNotLoggedInSnackbar(false);
-  };
   return (
     <React.Fragment>
       <FitnessScheduler
@@ -78,6 +84,7 @@ const SchedulerPage = () => {
       {isAppoinmentModalOpen && (
         <ConfirmAppointmentModal
           closeConfirmAppointment={closeConfirmAppointmentModalHandler}
+          succsessfulApointment={succsessfulApointmentHandler}
           className={appointmentDetails.className}
           classLocation={appointmentDetails.classLocation}
           classDate={appointmentDetails.classDate}
@@ -96,9 +103,16 @@ const SchedulerPage = () => {
       )}
       <SnackBar
         open={openUserNotLoggedInSnackbar}
-        closeSnackbarHandler={closeSnackbarHandler}
+        closeSnackbarHandler={() => setOpenUserNotLoggedInSnackbar(false)}
         message="You can't perform this action if not logged in"
         severity="error"
+      />
+
+      <SnackBar
+        open={opensSuccessfulAppointmentSnackbar}
+        closeSnackbarHandler={() => setOpenSuccessfulAppointmentSnackbar(false)}
+        message="Appointment created succesfully!"
+        severity="success"
       />
     </React.Fragment>
   );
