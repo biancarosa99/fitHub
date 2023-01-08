@@ -70,7 +70,7 @@ const ConfirmAppointmentModal = (props) => {
     setOpenErrorSnackbar(false);
   };
 
-  const disableConfirmButton = classMaxSpots === occupiedSpots ? true : false;
+  // const disableConfirmButton = classMaxSpots === occupiedSpots ? true : false;
 
   return (
     <React.Fragment>
@@ -119,11 +119,7 @@ const ConfirmAppointmentModal = (props) => {
           </div>
 
           <div className="actions">
-            <button
-              className="actions-button"
-              disabled={disableConfirmButton}
-              onClick={handleMakeAppointment}
-            >
+            <button className="actions-button" onClick={handleMakeAppointment}>
               Confirm
             </button>
             <button

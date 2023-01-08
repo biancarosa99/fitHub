@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/FitnessScheduler.css";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { weekDays } from "../assets/timeTableData";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -20,7 +19,8 @@ const FitnessScheduler = (props) => {
     try {
       const res = await axios.get("/location/");
       setLocations(res.data);
-      setTimetableLocation(res.data[1]);
+      const initialFitnessScheduleLocation = res.data[0];
+      setTimetableLocation(initialFitnessScheduleLocation);
     } catch (error) {
       console.log(error);
     }
@@ -28,17 +28,13 @@ const FitnessScheduler = (props) => {
 
   ////vezi daca trebe sa golesti array-ul pt cand se schimba locatia
   const getClassesForEachWeekDay = (schedule) => {
-    let scheduleByDays = {
-      Monday: [],
-      Tuesday: [],
-      Wednesday: [],
-      Thursday: [],
-      Frday: [],
-      Saturday: [],
-    };
+    let scheduleByDays = {};
 
     schedule.forEach((fitnessClass) => {
       const dayOfWeek = dayjs(fitnessClass.date).format("dddd");
+      if (!scheduleByDays[dayOfWeek]) {
+        scheduleByDays[dayOfWeek] = [];
+      }
       scheduleByDays[dayOfWeek].push(fitnessClass);
     });
 
@@ -109,7 +105,7 @@ const FitnessScheduler = (props) => {
         </div>
       </div>
 
-      {weekDays.map((day, index) => (
+      {Object.keys(fitnessSchedule).map((day, index) => (
         <div className="table-container" key={index}>
           <table className="table">
             <caption>{day}</caption>
