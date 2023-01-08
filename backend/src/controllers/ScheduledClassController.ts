@@ -9,7 +9,7 @@ import {
   getScheduledClassSpots,
 } from "../services/ScheduledClassService";
 
-router.get("/schedule/", getCurrentWeekSchedule); // gets this week's scheduled classes
+router.get("/schedule/:locationId", getCurrentWeekSchedule); // gets this week's scheduled classes
 router.get(
   "/schedule/users/:scheduledClassId",
   verifyToken,
