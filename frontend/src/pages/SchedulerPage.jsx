@@ -26,7 +26,8 @@ const SchedulerPage = () => {
     className,
     classLocation,
     classDate,
-    classId
+    classId,
+    classMaxSpots
   ) => {
     if (user) {
       setIsAppointmentModalOpen(true);
@@ -35,8 +36,10 @@ const SchedulerPage = () => {
         classLocation,
         classDate,
         classId,
+        classMaxSpots,
       };
       setAppointmentDetails(appointmentDetails);
+      console.log("classId" + classId);
     } else {
       userNotLoggedInHandler();
     }
@@ -79,6 +82,7 @@ const SchedulerPage = () => {
           classLocation={appointmentDetails.classLocation}
           classDate={appointmentDetails.classDate}
           classId={appointmentDetails.classId}
+          classMaxSpots={appointmentDetails.classMaxSpots}
         />
       )}
 

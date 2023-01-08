@@ -141,11 +141,13 @@ const FitnessScheduler = (props) => {
                             scheduledClass.date
                           );
                           const classId = scheduledClass.id;
+                          const classMaxSpots = scheduledClass.max_spots;
                           props.openConfirmAppointment(
                             className,
                             classLocation,
                             classDate,
-                            classId
+                            classId,
+                            classMaxSpots
                           );
                         }}
                       >
