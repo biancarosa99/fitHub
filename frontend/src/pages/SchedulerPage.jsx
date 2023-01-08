@@ -15,15 +15,28 @@ const SchedulerPage = () => {
   const [openUserNotLoggedInSnackbar, setOpenUserNotLoggedInSnackbar] =
     useState(false);
 
+  const [appointmentDetails, setAppointmentDetails] = useState({});
+
   const userNotLoggedInHandler = () => {
     setOpenUserNotLoggedInSnackbar(true);
     setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
   };
 
-  const openConfirmAppointmentModalHandler = () => {
+  const openConfirmAppointmentModalHandler = (
+    className,
+    classLocation,
+    classDate,
+    classId
+  ) => {
     if (user) {
       setIsAppointmentModalOpen(true);
-      console.log("modal opened");
+      const appointmentDetails = {
+        className,
+        classLocation,
+        classDate,
+        classId,
+      };
+      setAppointmentDetails(appointmentDetails);
     } else {
       userNotLoggedInHandler();
     }
@@ -62,6 +75,10 @@ const SchedulerPage = () => {
       {isAppoinmentModalOpen && (
         <ConfirmAppointmentModal
           closeConfirmAppointment={closeConfirmAppointmentModalHandler}
+          className={appointmentDetails.className}
+          classLocation={appointmentDetails.classLocation}
+          classDate={appointmentDetails.classDate}
+          classId={appointmentDetails.classId}
         />
       )}
 

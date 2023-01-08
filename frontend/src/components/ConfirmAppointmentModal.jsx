@@ -20,14 +20,14 @@ const ConfirmAppointmentModal = (props) => {
         </div>
 
         <div className="confirm-class-details-section">
-          <div className="confirm-class-name">KANGOO JUMPS</div>
+          <div className="confirm-class-name">{props.className}</div>
           <div className="confirm-class-location">
             <div className="icon">
               <LocationOnOutlinedIcon
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
             </div>
-            <div className="text"> FitHub1</div>
+            <div className="text">{props.classLocation}</div>
           </div>
           <div className="confirm-class-date">
             <div className="icon date-icon">
@@ -35,7 +35,7 @@ const ConfirmAppointmentModal = (props) => {
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
             </div>
-            <div className="text"> 6th December 2022 10:00-11:00</div>
+            <div className="text"> {props.classDate}</div>
           </div>
         </div>
 
