@@ -12,19 +12,26 @@ const SchedulerPage = () => {
   const [isAppoinmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [isBuySubscriptionModalOpen, setIsBuySubscriptionModalOpen] =
     useState(false);
+
   const [openUserNotLoggedInSnackbar, setOpenUserNotLoggedInSnackbar] =
     useState(false);
 
   const [
     opensSuccessfulAppointmentSnackbar,
     setOpenSuccessfulAppointmentSnackbar,
-  ] = useState(true);
+  ] = useState(false);
 
   const [appointmentDetails, setAppointmentDetails] = useState({});
 
   const userNotLoggedInHandler = () => {
     setOpenUserNotLoggedInSnackbar(true);
     setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
+  };
+
+  const succsessfulApointmentHandler = () => {
+    closeConfirmAppointmentModalHandler();
+    setOpenSuccessfulAppointmentSnackbar(true);
+    setTimeout(() => setOpenSuccessfulAppointmentSnackbar(false), 6000);
   };
 
   const openConfirmAppointmentModalHandler = (
@@ -51,12 +58,6 @@ const SchedulerPage = () => {
 
   const closeConfirmAppointmentModalHandler = () => {
     setIsAppointmentModalOpen(false);
-  };
-
-  const succsessfulApointmentHandler = () => {
-    closeConfirmAppointmentModalHandler();
-    setOpenSuccessfulAppointmentSnackbar(true);
-    setTimeout(() => setOpenSuccessfulAppointmentSnackbar(false), 6000);
   };
 
   const openBuySubscriptionModalHandler = () => {
