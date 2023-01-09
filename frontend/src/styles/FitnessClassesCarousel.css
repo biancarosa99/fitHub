@@ -74,9 +74,9 @@
   }
 } */
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 548px) {
   .slider-cnt {
-    width: 70%;
+    width: 80%;
   }
 
   .slider-cnt {

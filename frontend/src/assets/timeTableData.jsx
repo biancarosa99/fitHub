@@ -1,4 +1,4 @@
-export const timeTable = [
+export const weekDays = [
   "Monday",
   "Tuesday",
   "Wednesday",

@@ -14,6 +14,11 @@
   font-weight: 600;
   margin-bottom: 5px;
 }
+
+.full-class-title {
+  color: #f45b69;
+}
+
 .close-button {
   color: #f45b69;
   border: none;
@@ -22,14 +27,14 @@
   padding: 0px;
 }
 
-.class-details-section {
+.confirm-class-details-section {
   background-color: #faf9f6;
   margin-top: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 10px;
 }
 
-.class-name {
+.confirm-class-name {
   color: #f45b69;
   font-weight: 700;
   text-transform: uppercase;
@@ -43,14 +48,22 @@
   margin-right: 2px;
 }
 
-.class-location {
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.confirm-class-location {
   font-weight: 500;
   display: flex;
+  align-items: center;
   margin-top: 10px;
 }
 
-.class-date {
-  margin-top: 5px;
+.confirm-class-date {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -63,7 +76,7 @@
   justify-content: flex-end;
 }
 
-.action-button {
+.actions-button {
   background-color: #f45b69;
   color: white;
   padding: 10px;
@@ -77,7 +90,7 @@
   margin-right: 20px;
 }
 
-.action-button:hover {
+.actions-button:hover {
   opacity: 0.4;
 }
 
@@ -87,10 +100,32 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-right: 0;
+    /* margin-right: 0; */
   }
 
-  .action-button {
+  .actions-button {
     margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .date-icon {
+    margin-top: 3px;
+  }
+
+  .confirm-class-date {
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .actions-button {
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: 347px) {
+  .actions-button {
+    width: 80px;
   }
 }

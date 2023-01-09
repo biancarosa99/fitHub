@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/FitnessClassesCarousel.css";
-import { fitnessClasses } from "../assets/data";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
+import { useEffect } from "react";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -28,6 +29,22 @@ function SamplePrevArrow(props) {
 }
 
 const FitnessClassesCarousel = () => {
+  const [dbFitnessClasses, setDbFitnessClasses] = useState([]);
+
+  const getFitnessClasses = async () => {
+    try {
+      const res = await axios.get("/fitnessClass/");
+      setDbFitnessClasses(res.data);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getFitnessClasses();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -63,19 +80,20 @@ const FitnessClassesCarousel = () => {
       },
     ],
   };
+
   return (
     <div className="slider-cnt">
       <Slider {...settings}>
-        {fitnessClasses.map((fitnessClass) => (
+        {dbFitnessClasses.map((fitnessClass) => (
           <div key={fitnessClass.id} className="card">
             <div className="card-container">
               <div className="image-cnt">
-                <img src={fitnessClass.img} alt={fitnessClass.title} />
+                <img src={fitnessClass.imgURL} alt={fitnessClass.name} />
               </div>
               <div className="card-bottom">
                 <div className="class-description">
                   <h1>
-                    {fitnessClass.title} - {fitnessClass.duration} min
+                    {fitnessClass.name} - {fitnessClass.duration} min
                   </h1>
                   <div>{fitnessClass.description}</div>
                 </div>
