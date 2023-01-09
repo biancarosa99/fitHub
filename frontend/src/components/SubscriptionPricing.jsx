@@ -2,46 +2,71 @@ import React from "react";
 import "../styles/SubscriptionPricing.css";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const SubscriptionCard = (props) => {
+const SubscriptionPricing = (props) => {
+  const [subscriptionTypes, setSubscriptiontypes] = useState([]);
+
+  const getAllSubscriptionTypes = async () => {
+    try {
+      const res = await axios.get("/subscriptions/");
+      setSubscriptiontypes(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getAllSubscriptionTypes();
+  }, []);
+
   return (
-    <section className="pricing">
-      <h1 className="heading">Pricing</h1>
+    <React.Fragment>
+      {subscriptionTypes.map((subscription, index) => (
+        <section className="pricing" key={index}>
+          <h1 className="heading">Pricing</h1>
 
-      <div className="box-container">
-        <div className="box">
-          <h3>FULL TIME PASS 1</h3>
-          <div className="price">
-            <span>100 lei</span>
-          </div>
+          <div className="box-container">
+            <div className="box">
+              <h3>{subscription.name}</h3>
+              <div className="price">
+                <span>{subscription.price} lei</span>
+              </div>
 
-          <h3 className="month">1 month</h3>
+              <h3 className="month">
+                {subscription.duration}{" "}
+                {subscription.duration === 1 ? "month" : "months"}
+              </h3>
 
-          <div className="subscription-facilities">
-            <div className="subscription-facility">
-              <span>
-                <CheckOutlinedIcon sx={{ color: "#f45b69" }} />
-              </span>
-              <span> Unlimited access to all classes</span>
+              <div className="subscription-facilities">
+                <div className="subscription-facility">
+                  <span>
+                    <CheckOutlinedIcon sx={{ color: "#f45b69" }} />
+                  </span>
+                  <span> Unlimited access to all classes</span>
+                </div>
+                <div className="subscription-facility">
+                  <span>
+                    <LocationOnOutlinedIcon sx={{ color: "#f45b69" }} />
+                  </span>
+                  <span> Access to all FitHub studios</span>
+                </div>
+              </div>
+
+              <button
+                className="buy-subscription-button"
+                onClick={props.openBuySubscriptionModal}
+              >
+                Buy subscription
+              </button>
             </div>
-            <div className="subscription-facility">
-              <span>
-                <LocationOnOutlinedIcon sx={{ color: "#f45b69" }} />
-              </span>
-              <span> Access to all FitHub studios</span>
-            </div>
           </div>
-
-          <button
-            className="buy-subscription-button"
-            onClick={props.openBuySubscriptionModal}
-          >
-            Buy subscription
-          </button>
-        </div>
-      </div>
-    </section>
+        </section>
+      ))}
+    </React.Fragment>
   );
 };
 
-export default SubscriptionCard;
+export default SubscriptionPricing;
