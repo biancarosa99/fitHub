@@ -70,14 +70,20 @@ const ConfirmAppointmentModal = (props) => {
     setOpenErrorSnackbar(false);
   };
 
-  // const disableConfirmButton = classMaxSpots === occupiedSpots ? true : false;
+  const classNotFull = classMaxSpots === occupiedSpots ? false : true;
 
   return (
     <React.Fragment>
       <Modal>
         <div className="modal-container">
           <div className="confirm-title-section">
-            <div className="confirm-title">Confirm Apppointment?</div>
+            {classNotFull ? (
+              <div className="confirm-title">Confirm Apppointment?</div>
+            ) : (
+              <div className="confirm-title full-class-title">
+                This class is full
+              </div>
+            )}
             <button
               className="close-button"
               onClick={props.closeConfirmAppointment}
@@ -113,15 +119,20 @@ const ConfirmAppointmentModal = (props) => {
                 />
               </div>
               <div className="text">
-                {occupiedSpots}/{classMaxSpots} Occupied spots
+                {occupiedSpots}/{classMaxSpots} occupied spots
               </div>
             </div>
           </div>
 
           <div className="actions">
-            <button className="actions-button" onClick={handleMakeAppointment}>
-              Confirm
-            </button>
+            {classNotFull && (
+              <button
+                className="actions-button"
+                onClick={handleMakeAppointment}
+              >
+                Confirm
+              </button>
+            )}
             <button
               className="actions-button"
               onClick={props.closeConfirmAppointment}
