@@ -94,14 +94,14 @@ const BuySubscriptionModal = (props) => {
               <span> Access to all FitHub clubs</span>
             </div>
 
-            <div className="subscription-valability">
+            <div className="subscription-availability">
               <span className="icon">
                 <CalendarMonthOutlinedIcon
                   sx={{ color: "#f45b69", fontSize: "large" }}
                 />
               </span>
               <span>
-                Pass valability: {subscriptionDuration}{" "}
+                Pass availability: {subscriptionDuration}{" "}
                 {subscriptionDuration === 1 ? "month" : "months"}
               </span>
             </div>

@@ -47,12 +47,9 @@
   font-weight: 500;
   display: flex;
   margin-top: 10px;
-  /* align-items: center;
-    justify-content: center; */
 }
 
-.subscription-valability {
-  /* font-weight: 500; */
+.subscription-availability {
   margin-top: 5px;
   display: flex;
   align-items: center;
