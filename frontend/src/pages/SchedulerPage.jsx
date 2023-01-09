@@ -21,20 +21,14 @@ const SchedulerPage = () => {
     setOpenSuccessfulAppointmentSnackbar,
   ] = useState(false);
 
+  const [
+    opensSuccessfulBuySubscriptionSnackbar,
+    setOpenSuccessfulBuySubscriptionSnackbar,
+  ] = useState(false);
+
   const [appointmentDetails, setAppointmentDetails] = useState({});
 
   const [subscriptionTypeDetails, setSubscriptionTypeDetails] = useState({});
-
-  const userNotLoggedInHandler = () => {
-    setOpenUserNotLoggedInSnackbar(true);
-    setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
-  };
-
-  const succsessfulApointmentHandler = () => {
-    closeConfirmAppointmentModalHandler();
-    setOpenSuccessfulAppointmentSnackbar(true);
-    setTimeout(() => setOpenSuccessfulAppointmentSnackbar(false), 6000);
-  };
 
   const openConfirmAppointmentModalHandler = (
     className,
@@ -84,7 +78,23 @@ const SchedulerPage = () => {
 
   const closeBuySubscriptionModalModalHandler = () => {
     setIsBuySubscriptionModalOpen(false);
-    console.log("modal opened");
+  };
+
+  const userNotLoggedInHandler = () => {
+    setOpenUserNotLoggedInSnackbar(true);
+    setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
+  };
+
+  const succsessfulApointmentHandler = () => {
+    closeConfirmAppointmentModalHandler();
+    setOpenSuccessfulAppointmentSnackbar(true);
+    setTimeout(() => setOpenSuccessfulAppointmentSnackbar(false), 6000);
+  };
+
+  const succsessfulBuySubscriptionHandler = () => {
+    closeBuySubscriptionModalModalHandler();
+    setOpenSuccessfulBuySubscriptionSnackbar(true);
+    setTimeout(() => setOpenSuccessfulBuySubscriptionSnackbar(false), 6000);
   };
 
   return (
@@ -110,6 +120,7 @@ const SchedulerPage = () => {
       {isBuySubscriptionModalOpen && (
         <BuySubscriptionModal
           closeBuySubscription={closeBuySubscriptionModalModalHandler}
+          succsessfulBuySubscription={succsessfulBuySubscriptionHandler}
           subscriptionId={subscriptionTypeDetails.id}
           subscriptionName={subscriptionTypeDetails.name}
           subscriptionPricing={subscriptionTypeDetails.pricing}
@@ -126,7 +137,16 @@ const SchedulerPage = () => {
       <SnackBar
         open={opensSuccessfulAppointmentSnackbar}
         closeSnackbarHandler={() => setOpenSuccessfulAppointmentSnackbar(false)}
-        message="Appointment created succesfully!"
+        message="Appointment created successfully!"
+        severity="success"
+      />
+
+      <SnackBar
+        open={opensSuccessfulBuySubscriptionSnackbar}
+        closeSnackbarHandler={() =>
+          setOpenSuccessfulBuySubscriptionSnackbar(false)
+        }
+        message="Action completed successfully!"
         severity="success"
       />
     </React.Fragment>

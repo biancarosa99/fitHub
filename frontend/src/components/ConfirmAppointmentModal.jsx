@@ -40,7 +40,7 @@ const ConfirmAppointmentModal = (props) => {
   const handleMakeAppointment = async () => {
     try {
       const userTk = user.token;
-      if (classId) {
+      if (classId && user) {
         await axios.post(
           "/user/appointment",
           { scheduledClassId: classId },
