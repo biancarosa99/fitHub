@@ -24,47 +24,59 @@ const SubscriptionPricing = (props) => {
 
   return (
     <React.Fragment>
-      {subscriptionTypes.map((subscription, index) => (
-        <section className="pricing" key={index}>
-          <h1 className="heading">Pricing</h1>
-
-          <div className="box-container">
-            <div className="box">
-              <h3>{subscription.name}</h3>
-              <div className="price">
-                <span>{subscription.price} lei</span>
-              </div>
-
-              <h3 className="month">
-                {subscription.duration}{" "}
-                {subscription.duration === 1 ? "month" : "months"}
-              </h3>
-
-              <div className="subscription-facilities">
-                <div className="subscription-facility">
-                  <span>
-                    <CheckOutlinedIcon sx={{ color: "#f45b69" }} />
-                  </span>
-                  <span> Unlimited access to all classes</span>
+      <h1 className="heading">Pricing</h1>
+      {subscriptionTypes.map((subscription, index) => {
+        const subscriptionTypeName = subscription.name;
+        const subscriptionTypePricing = subscription.price;
+        const subscriptionTypeDuration = subscription.duration;
+        const subscriptionTypeId = subscription.id;
+        return (
+          <section className="pricing" key={index}>
+            <div className="box-container">
+              <div className="box">
+                <h3>{subscriptionTypeName}</h3>
+                <div className="price">
+                  <span>{subscriptionTypePricing} lei</span>
                 </div>
-                <div className="subscription-facility">
-                  <span>
-                    <LocationOnOutlinedIcon sx={{ color: "#f45b69" }} />
-                  </span>
-                  <span> Access to all FitHub studios</span>
-                </div>
-              </div>
 
-              <button
-                className="buy-subscription-button"
-                onClick={props.openBuySubscriptionModal}
-              >
-                Buy subscription
-              </button>
+                <h3 className="month">
+                  {subscriptionTypeDuration}{" "}
+                  {subscriptionTypeDuration === 1 ? "month" : "months"}
+                </h3>
+
+                <div className="subscription-facilities">
+                  <div className="subscription-facility">
+                    <span>
+                      <CheckOutlinedIcon sx={{ color: "#f45b69" }} />
+                    </span>
+                    <span> Unlimited access to all classes</span>
+                  </div>
+                  <div className="subscription-facility">
+                    <span>
+                      <LocationOnOutlinedIcon sx={{ color: "#f45b69" }} />
+                    </span>
+                    <span> Access to all FitHub studios</span>
+                  </div>
+                </div>
+
+                <button
+                  className="buy-subscription-button"
+                  onClick={() =>
+                    props.openBuySubscriptionModal(
+                      subscriptionTypeId,
+                      subscriptionTypeName,
+                      subscriptionTypePricing,
+                      subscriptionTypeDuration
+                    )
+                  }
+                >
+                  Buy subscription
+                </button>
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
     </React.Fragment>
   );
 };

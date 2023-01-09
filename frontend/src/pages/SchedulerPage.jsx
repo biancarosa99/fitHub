@@ -23,6 +23,8 @@ const SchedulerPage = () => {
 
   const [appointmentDetails, setAppointmentDetails] = useState({});
 
+  const [subscriptionTypeDetails, setSubscriptionTypeDetails] = useState({});
+
   const userNotLoggedInHandler = () => {
     setOpenUserNotLoggedInSnackbar(true);
     setTimeout(() => setOpenUserNotLoggedInSnackbar(false), 6000);
@@ -43,14 +45,14 @@ const SchedulerPage = () => {
   ) => {
     if (user) {
       setIsAppointmentModalOpen(true);
-      const appointmentDetails = {
-        className,
-        classLocation,
-        classDate,
-        classId,
-        classMaxSpots,
+      const details = {
+        name: className,
+        location: classLocation,
+        date: classDate,
+        id: classId,
+        maxSpots: classMaxSpots,
       };
-      setAppointmentDetails(appointmentDetails);
+      setAppointmentDetails(details);
     } else {
       userNotLoggedInHandler();
     }
@@ -60,10 +62,21 @@ const SchedulerPage = () => {
     setIsAppointmentModalOpen(false);
   };
 
-  const openBuySubscriptionModalHandler = () => {
+  const openBuySubscriptionModalHandler = (
+    subscriptionTypeId,
+    subscriptionTypeName,
+    subscriptionTypePricing,
+    subscriptionTypeDuration
+  ) => {
     if (user) {
       setIsBuySubscriptionModalOpen(true);
-      console.log("modal opened");
+      const details = {
+        id: subscriptionTypeId,
+        name: subscriptionTypeName,
+        pricing: subscriptionTypePricing,
+        duration: subscriptionTypeDuration,
+      };
+      setSubscriptionTypeDetails(details);
     } else {
       userNotLoggedInHandler();
     }
@@ -86,20 +99,21 @@ const SchedulerPage = () => {
         <ConfirmAppointmentModal
           closeConfirmAppointment={closeConfirmAppointmentModalHandler}
           succsessfulApointment={succsessfulApointmentHandler}
-          className={appointmentDetails.className}
-          classLocation={appointmentDetails.classLocation}
-          classDate={appointmentDetails.classDate}
-          classId={appointmentDetails.classId}
-          classMaxSpots={appointmentDetails.classMaxSpots}
+          className={appointmentDetails.name}
+          classLocation={appointmentDetails.location}
+          classDate={appointmentDetails.date}
+          classId={appointmentDetails.id}
+          classMaxSpots={appointmentDetails.maxSpots}
         />
       )}
 
       {isBuySubscriptionModalOpen && (
         <BuySubscriptionModal
           closeBuySubscription={closeBuySubscriptionModalModalHandler}
-          title="Full Time Pass 1"
-          duration="1 month"
-          price="100"
+          subscriptionId={subscriptionTypeDetails.id}
+          subscriptionName={subscriptionTypeDetails.name}
+          subscriptionPricing={subscriptionTypeDetails.pricing}
+          subscriptionDuration={subscriptionTypeDetails.duration}
         />
       )}
       <SnackBar

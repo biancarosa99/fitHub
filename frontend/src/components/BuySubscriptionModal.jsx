@@ -7,6 +7,11 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 
 const BuySubscriptionModal = (props) => {
+  const subscriptionId = props.subscriptionId;
+  const subscriptionName = props.subscriptionName;
+  const subscriptionPricing = props.subscriptionPricing;
+  const subscriptionDuration = props.subscriptionDuration;
+
   return (
     <Modal>
       <div className="modal-container">
@@ -18,7 +23,7 @@ const BuySubscriptionModal = (props) => {
         </div>
 
         <div className="subscription-details-section">
-          <div className="subscription-name">{props.title}</div>
+          <div className="subscription-name">{subscriptionName}</div>
 
           <div className="subscription-location">
             <span className="icon">
@@ -35,7 +40,7 @@ const BuySubscriptionModal = (props) => {
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
             </span>
-            <span>Pass valability: {props.duration}</span>
+            <span>Pass valability: {subscriptionDuration}</span>
           </div>
 
           <div className="subscription-price">
@@ -44,7 +49,7 @@ const BuySubscriptionModal = (props) => {
                 sx={{ color: "#f45b69", fontSize: "large" }}
               />
             </span>
-            <span> Total Amount to pay: {props.price} lei</span>
+            <span> Total Amount to pay: {subscriptionPricing} lei</span>
           </div>
         </div>
 
