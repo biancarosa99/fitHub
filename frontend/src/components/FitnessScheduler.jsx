@@ -111,46 +111,42 @@ const FitnessScheduler = (props) => {
             <caption>{day}</caption>
             <tbody>
               {fitnessSchedule[day] &&
-                fitnessSchedule[day].map((scheduledClass, index) => (
-                  <tr key={index}>
-                    <td
-                      data-lable="Start Hour"
-                      className="fitness-start-hour-cell"
-                    >
-                      {dayjs(scheduledClass.date).format("HH")}:
-                      {dayjs(scheduledClass.date).format("mm")}
-                    </td>
-                    <td data-lable="Fitness Class Name">
-                      {scheduledClass.fitnessClass.name}
-                    </td>
-                    <td data-lable="Avalable spots">
-                      {scheduledClass.max_spots}
-                    </td>
-                    <td data-lable="Actions">
-                      <button
-                        className="join-class-button"
-                        onClick={() => {
-                          const className = scheduledClass.fitnessClass.name;
-                          const classLocation = scheduledClass.location.name;
-                          const classDate = getFormattedDate(
-                            scheduledClass.date
-                          );
-                          const classId = scheduledClass.id;
-                          const classMaxSpots = scheduledClass.max_spots;
-                          props.openConfirmAppointment(
-                            className,
-                            classLocation,
-                            classDate,
-                            classId,
-                            classMaxSpots
-                          );
-                        }}
+                fitnessSchedule[day].map((scheduledClass, index) => {
+                  const className = scheduledClass.fitnessClass.name;
+                  const classLocation = scheduledClass.location.name;
+                  const classDate = getFormattedDate(scheduledClass.date);
+                  const classId = scheduledClass.id;
+                  const classMaxSpots = scheduledClass.max_spots;
+                  return (
+                    <tr key={index}>
+                      <td
+                        data-lable="Start Hour"
+                        className="fitness-start-hour-cell"
                       >
-                        Show Details
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                        {dayjs(scheduledClass.date).format("HH")}:
+                        {dayjs(scheduledClass.date).format("mm")}
+                      </td>
+                      <td data-lable="Fitness Class Name">{className}</td>
+                      <td data-lable="Avalable spots">{classMaxSpots}</td>
+                      <td data-lable="Actions">
+                        <button
+                          className="join-class-button"
+                          onClick={() =>
+                            props.openConfirmAppointment(
+                              className,
+                              classLocation,
+                              classDate,
+                              classId,
+                              classMaxSpots
+                            )
+                          }
+                        >
+                          Show Details
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
