@@ -2,7 +2,10 @@ import { query, Request, Response } from "express";
 import ScheduledClass from "../entities/ScheduledClass";
 import { myDataSource } from "../app-data-source";
 import { AuthenticatedRequest } from "../middleware/verifyToken";
-import { checkScheduledClassAvailability } from "../utils/helperFunctions";
+import {
+  checkScheduledClassAvailability,
+  getZoomAccessToken,
+} from "../utils/helperFunctions";
 import * as dayjs from "dayjs";
 dayjs().format();
 import isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
@@ -141,39 +144,17 @@ export const getPastTrainerClasses = async (
   }
 };
 
-export const getAccessToken = async () => {
-  const ZOOM_CLIENT_ID = process.env.ZOOM_CLIENT_ID;
-  const ZOOM_CLIENT_SECRET = process.env.ZOOM_CLIENT_SECRET;
-  const ZOOM_ACCOUNT_ID = process.env.ZOOM_ACCOUNT_ID;
-
-  const encodedCredentials = Buffer.from(
-    `${ZOOM_CLIENT_ID}:${ZOOM_CLIENT_SECRET}`
-  ).toString("base64");
-
-  const accessTokenUrl = `https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${ZOOM_ACCOUNT_ID}`;
-
-  try {
-    const response = await axios.post(accessTokenUrl, null, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${encodedCredentials}`,
-      },
-    });
-    return response.data.access_token;
-  } catch (error) {
-    console.error("Error getting access token:", error.response.data);
-    throw new Error("Failed to get access token");
-  }
-};
-
 export const createMeeting = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
+  const { tkUser } = req;
   const { topic, start_time, duration } = req.body;
 
+  if (!tkUser.isTrainer) return res.status(401).json("Not a trainer");
+
   try {
-    const accessToken = await getAccessToken();
+    const accessToken = await getZoomAccessToken();
     const response = await axios.post(
       "https://api.zoom.us/v2/users/me/meetings",
       {
@@ -206,6 +187,5 @@ module.exports = {
   removeFitnessClass,
   getTrainerClasses,
   getPastTrainerClasses,
-  getAccessToken,
   createMeeting,
 };

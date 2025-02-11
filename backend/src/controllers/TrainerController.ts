@@ -5,7 +5,6 @@ import {
   getTrainerClasses,
   removeFitnessClass,
   getPastTrainerClasses,
-  getAccessToken,
   createMeeting,
 } from "../services/TrainerService";
 import { verifyToken } from "../middleware/verifyToken";

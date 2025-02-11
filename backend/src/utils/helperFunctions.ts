@@ -9,6 +9,7 @@ dayjs.extend(isBetween);
 import duration = require("dayjs/plugin/duration");
 dayjs.extend(duration);
 import isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
+import axios from "axios";
 dayjs.extend(isSameOrAfter);
 
 export const isSubscriptionValid = async (userId, scheduledClassId) => {
@@ -164,8 +165,34 @@ export const checkScheduledClassAvailability = async (
   }
 };
 
+export const getZoomAccessToken = async () => {
+  const ZOOM_CLIENT_ID = process.env.ZOOM_CLIENT_ID;
+  const ZOOM_CLIENT_SECRET = process.env.ZOOM_CLIENT_SECRET;
+  const ZOOM_ACCOUNT_ID = process.env.ZOOM_ACCOUNT_ID;
+
+  const encodedCredentials = Buffer.from(
+    `${ZOOM_CLIENT_ID}:${ZOOM_CLIENT_SECRET}`
+  ).toString("base64");
+
+  const accessTokenUrl = `https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${ZOOM_ACCOUNT_ID}`;
+
+  try {
+    const response = await axios.post(accessTokenUrl, null, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${encodedCredentials}`,
+      },
+    });
+    return response.data.access_token;
+  } catch (error) {
+    console.error("Error getting access token:", error.response.data);
+    throw new Error("Failed to get access token");
+  }
+};
+
 module.exports = {
   isSubscriptionValid,
   checkSubscriptionDuplicates,
   checkScheduledClassAvailability,
+  getZoomAccessToken,
 };
