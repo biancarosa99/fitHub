@@ -7,6 +7,7 @@ import * as dayjs from "dayjs";
 dayjs().format();
 import isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 import { LessThan, MoreThan, MoreThanOrEqual } from "typeorm";
+import axios from "axios";
 dayjs.extend(isSameOrAfter);
 
 export const createFitnessClass = async (
@@ -140,9 +141,73 @@ export const getPastTrainerClasses = async (
   }
 };
 
+interface MeetingRequest extends Request {
+  body: {
+    topic: string;
+    start_time: string;
+    duration: number;
+  };
+}
+
+export const getAccessToken = async () => {
+  const ZOOM_CLIENT_ID = process.env.ZOOM_CLIENT_ID;
+  const ZOOM_CLIENT_SECRET = process.env.ZOOM_CLIENT_SECRET;
+  const ZOOM_ACCOUNT_ID = process.env.ZOOM_ACCOUNT_ID;
+  const credentials = Buffer.from(
+    `${ZOOM_CLIENT_ID}:${ZOOM_CLIENT_SECRET}`
+  ).toString("base64");
+  const tokenUrl = `https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${ZOOM_ACCOUNT_ID}`;
+  try {
+    const response = await axios.post(tokenUrl, null, {
+      headers: {
+        Authorization: `Basic ${credentials}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return response.data.access_token;
+  } catch (error) {
+    console.error("Error getting access token:", error.response.data);
+    throw new Error("Failed to get access token");
+  }
+};
+
+export const createMeeting = async (req: Request, res: Response) => {
+  const { topic, start_time, duration } = req.body;
+
+  try {
+    const accessToken = await getAccessToken();
+    const response = await axios.post(
+      "https://api.zoom.us/v2/users/me/meetings",
+      {
+        topic,
+        type: 2,
+        start_time: "2025-02-12T21:00:00Z",
+        duration: 30,
+        settings: {
+          join_before_host: true,
+          participant_video: true,
+          host_video: true,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return res.json(response.data);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
+
 module.exports = {
   createFitnessClass,
   removeFitnessClass,
   getTrainerClasses,
   getPastTrainerClasses,
+  getAccessToken,
+  createMeeting,
 };

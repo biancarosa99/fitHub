@@ -9,6 +9,7 @@ import Register from "./Register";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import SnackBar from "../UI/SnackBar";
+import axios from "axios";
 
 const Navbar = () => {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
@@ -85,6 +86,19 @@ const Navbar = () => {
     setOpenSnackbar(false);
   };
 
+  const handleStartMeeting = async () => {
+    try {
+      const response = await axios.post("/trainer/create-meeting", {
+        topic: "Test meeting",
+        start_time: "test",
+        duration: 20,
+      });
+      console.log("meeting details", response.data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   const userLoggedOutClasses = user ? "menu-item hide-menu-item" : "menu-item";
 
   const userLoggedInClasses = user ? "menu-item" : "menu-item hide-menu-item";
@@ -112,6 +126,9 @@ const Navbar = () => {
         </div>
 
         <div className="menu-items-desktop">
+          <li className="menu-item" onClick={handleStartMeeting}>
+            START MEETING
+          </li>
           <li className="menu-item">
             <a className="anchor" href="/">
               HOME
