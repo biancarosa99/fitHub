@@ -146,7 +146,7 @@ export const getAccessToken = async () => {
   const ZOOM_CLIENT_SECRET = process.env.ZOOM_CLIENT_SECRET;
   const ZOOM_ACCOUNT_ID = process.env.ZOOM_ACCOUNT_ID;
 
-  const credentials = Buffer.from(
+  const encodedCredentials = Buffer.from(
     `${ZOOM_CLIENT_ID}:${ZOOM_CLIENT_SECRET}`
   ).toString("base64");
 
@@ -155,8 +155,8 @@ export const getAccessToken = async () => {
   try {
     const response = await axios.post(accessTokenUrl, null, {
       headers: {
-        Authorization: `Basic ${credentials}`,
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${encodedCredentials}`,
       },
     });
     return response.data.access_token;
