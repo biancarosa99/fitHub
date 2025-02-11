@@ -141,24 +141,19 @@ export const getPastTrainerClasses = async (
   }
 };
 
-interface MeetingRequest extends Request {
-  body: {
-    topic: string;
-    start_time: string;
-    duration: number;
-  };
-}
-
 export const getAccessToken = async () => {
   const ZOOM_CLIENT_ID = process.env.ZOOM_CLIENT_ID;
   const ZOOM_CLIENT_SECRET = process.env.ZOOM_CLIENT_SECRET;
   const ZOOM_ACCOUNT_ID = process.env.ZOOM_ACCOUNT_ID;
+
   const credentials = Buffer.from(
     `${ZOOM_CLIENT_ID}:${ZOOM_CLIENT_SECRET}`
   ).toString("base64");
-  const tokenUrl = `https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${ZOOM_ACCOUNT_ID}`;
+
+  const accessTokenUrl = `https://zoom.us/oauth/token?grant_type=account_credentials&account_id=${ZOOM_ACCOUNT_ID}`;
+
   try {
-    const response = await axios.post(tokenUrl, null, {
+    const response = await axios.post(accessTokenUrl, null, {
       headers: {
         Authorization: `Basic ${credentials}`,
         "Content-Type": "application/x-www-form-urlencoded",
@@ -171,7 +166,10 @@ export const getAccessToken = async () => {
   }
 };
 
-export const createMeeting = async (req: Request, res: Response) => {
+export const createMeeting = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   const { topic, start_time, duration } = req.body;
 
   try {

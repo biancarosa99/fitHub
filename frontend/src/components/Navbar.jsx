@@ -88,11 +88,19 @@ const Navbar = () => {
 
   const handleStartMeeting = async () => {
     try {
-      const response = await axios.post("/trainer/create-meeting", {
-        topic: "Test meeting",
-        start_time: "test",
-        duration: 20,
-      });
+      const response = await axios.post(
+        "/trainer/create-meeting",
+        {
+          topic: "Test meeting",
+          start_time: "test",
+          duration: 20,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       console.log("meeting details", response.data);
     } catch (error) {
       console.log("error", error);
