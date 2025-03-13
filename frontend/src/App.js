@@ -12,6 +12,7 @@ import "./App.css";
 import { LocationProvider } from "./context/LocationContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPage from "./pages/admin/AdminPage";
+import ZoomPage from "./pages/ZoomPage";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -50,6 +51,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/zoom" element={<ZoomPage />} />
           </Routes>
         </div>
         <Footer />
